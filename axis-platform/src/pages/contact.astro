@@ -103,7 +103,7 @@ function sendContact(){
   if(!n||!e||!m){alert('Please fill in your name, email, and message.');return;}
   var btn=document.getElementById('csend');
   btn.textContent='Sending…';btn.disabled=true;
-  fetch('/api/v1/audit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,message:m,source:'contact'})}).catch(function(){});
+  fetch('https://axismediaweb.up.railway.app/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,message:m,source:'contact'})}).catch(function(){});
   setTimeout(function(){
     btn.style.display='none';
     document.getElementById('csent').style.display='block';
