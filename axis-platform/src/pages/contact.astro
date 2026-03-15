@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const faqs = [
+  {q:'How much does it cost?',a:'Every project is priced on scope — but most websites start from KES 80,000 and automation systems from KES 150,000. We give you a clear quote after your free assessment, with no hidden fees.'},
+  {q:'How long does it take?',a:'Most projects go live within 6–12 weeks. Simpler websites can be done in 4 weeks. We always agree a timeline upfront and we hit it.'},
+  {q:'Do you work with small businesses?',a:'Yes. Some of our best work has been with businesses under KES 500K/month who needed a strong digital foundation. Size is less important than commitment to growth.'},
+  {q:'What happens after launch?',a:"We offer an ongoing Maintenance Phase — monthly monitoring, updates, and improvements. But if you just want the build, that's fine too. We hand everything over fully so you're never dependent on us."},
+  {q:'Can you integrate M-Pesa with my existing website?',a:"Yes. We can integrate Daraja STK Push, C2B, and B2C into any modern website. We handle the full setup including the Safaricom approval process if you don't have a shortcode yet."},
+  {q:'Do you work with clients outside Mombasa?',a:"Absolutely. We work with businesses across Kenya — Nairobi, Kisumu, Nakuru, wherever you are. All discovery meetings can be done online."},
+  {q:'What do I need to get started?',a:"Nothing except a few minutes to answer our assessment questions. We'll take it from there and come back to you with a clear picture of what we'd recommend."},
+  {q:'Do you offer payment plans?',a:'Yes. For larger projects we offer a 50% upfront / 50% on launch split. Monthly billing is available for ongoing services.'},
+];
+---
+<BaseLayout title="Contact & FAQ" page="contact">
+<section class="sec" style="padding-top:clamp(56px,10vw,80px);">
+  <p class="lbl rv" style="margin-bottom:8px;">Get In Touch</p>
+  <h1 class="sh rv" style="font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:12px;transition-delay:.08s;">We'd Love to<br/><em style="color:var(--gold);font-style:italic;">Hear From You</em></h1>
+  <p class="body-t rv" style="max-width:480px;margin-bottom:clamp(32px,5vw,48px);transition-delay:.16s;">Whether you have a question, a project in mind, or just want to explore what's possible — reach out. We respond same day.</p>
+
+  <div id="cg" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);margin-bottom:clamp(48px,7vw,72px);">
+    <div class="rv">
+      <div class="gc" style="padding:clamp(22px,4vw,36px);">
+        <p style="font-family:var(--fd);font-size:1.4rem;font-weight:300;color:var(--t1);margin-bottom:18px;">Send Us a Message</p>
+        <input class="inp" id="cn" type="text"  placeholder="Your name"/>
+        <input class="inp" id="ce" type="email" placeholder="Your email"/>
+        <input class="inp" id="cb" type="text"  placeholder="Business name (optional)"/>
+        <textarea class="inp" id="cm" placeholder="Tell us about your business and what you need..."></textarea>
+        <button class="btn-g" id="csend" onclick="sendContact()" style="width:100%;justify-content:center;">Send Message →</button>
+        <div id="csent" style="display:none;margin-top:10px;padding:12px 16px;background:var(--sd);border:1px solid var(--sb);border-radius:8px;font-family:var(--fm);font-size:.68rem;color:var(--sig);">✓ Message sent. We'll reply within a few hours.</div>
+      </div>
+    </div>
+    <div>
+      <div class="gc rv" style="padding:clamp(18px,3.5vw,28px);margin-bottom:12px;transition-delay:.1s;">
+        <p style="font-family:var(--fd);font-size:1.2rem;font-weight:300;color:var(--t1);margin-bottom:16px;">Contact Details</p>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          {[
+            {label:'WhatsApp',val:'+254 700 000 000'},
+            {label:'Email',val:'hello@axismediaws.com'},
+            {label:'Location',val:'Mombasa & Nairobi, Kenya'},
+          ].map(c=>(
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--gd2);border:1px solid var(--gbh);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="#C9A84C" stroke-width=".9"/><path d="M6.5 4v2.5l1.5 1.5" stroke="#C9A84C" stroke-width=".9" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div style="font-family:var(--fm);font-size:.52rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px;">{c.label}</div>
+                <div style="font-size:clamp(.82rem,1vw,.88rem);color:var(--t2);">{c.val}</div>
+              </div>
+            </div>
+          ))}
+          <div style="display:flex;align-items:center;gap:7px;padding-top:4px;border-top:1px solid rgba(255,255,255,.06);">
+            <div class="dot"></div>
+            <span style="font-family:var(--fm);font-size:.54rem;color:var(--t3);letter-spacing:.08em;">Available Mon–Sat · 8am–7pm EAT</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <a href="/assessment" class="gc" style="padding:14px;text-align:center;text-decoration:none;display:block;">
+          <div style="font-family:var(--fd);font-size:1rem;color:var(--gold);margin-bottom:2px;">Free Assessment</div>
+          <div class="lbl" style="font-size:.5rem;">Get started</div>
+        </a>
+        <a href="/work" class="gc" style="padding:14px;text-align:center;text-decoration:none;display:block;">
+          <div style="font-family:var(--fd);font-size:1rem;color:var(--gold);margin-bottom:2px;">Our Work</div>
+          <div class="lbl" style="font-size:.5rem;">See results</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <p class="lbl rv" style="margin-bottom:8px;">Frequently Asked Questions</p>
+  <h2 class="sh rv" style="margin-bottom:clamp(24px,4vw,36px);transition-delay:.08s;">Everything You<br/><em style="color:var(--gold);font-style:italic;">Want to Know</em></h2>
+  <div style="max-width:760px;">
+    {faqs.map((f,i)=>(
+      <div class="faq-item rv" id={`fi${i}`} style={`transition-delay:${i*.04}s;`}>
+        <div class="faq-q" onclick={`tf(${i})`}>
+          <span>{f.q}</span>
+          <div class="faq-icon">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="var(--gd)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="faq-a"><p>{f.a}</p></div>
+      </div>
+    ))}
+  </div>
+</section>
+</BaseLayout>
+
+<style>
+  @media(max-width:640px){#cg{grid-template-columns:1fr !important;}}
+</style>
+
+<script is:inline>
+function tf(i){
+  var item=document.getElementById('fi'+i);
+  var open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(el){el.classList.remove('open');});
+  if(!open)item.classList.add('open');
+}
+function sendContact(){
+  var n=document.getElementById('cn').value.trim();
+  var e=document.getElementById('ce').value.trim();
+  var m=document.getElementById('cm').value.trim();
+  if(!n||!e||!m){alert('Please fill in your name, email, and message.');return;}
+  var btn=document.getElementById('csend');
+  btn.textContent='Sending…';btn.disabled=true;
+  fetch('/api/v1/audit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,message:m,source:'contact'})}).catch(function(){});
+  setTimeout(function(){
+    btn.style.display='none';
+    document.getElementById('csent').style.display='block';
+  },700);
+}
+</script>

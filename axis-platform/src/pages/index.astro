@@ -1,424 +1,191 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const homeSchema = {
-  '@type': 'WebSite',
-  name: 'AXIS Media and Web Services',
-  url: 'https://axismediaws.com',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://axismediaws.com/archive?q={search_term_string}',
-    'query-input': 'required name=search_term_string',
-  },
-};
-
-const metrics = [
-  { value: '47',    label: 'Systems Under Management',       suffix: '' },
-  { value: '98ms',  label: 'Average API Response Latency',   suffix: '' },
-  { value: '3.2M',  label: 'KES Automated via M-Pesa',       suffix: '+' },
-  { value: '100%',  label: 'Infrastructure Uptime This Year', suffix: '' },
+const services = [
+  {icon:'grid',title:'Professional Website',desc:'A fast, mobile-first website that looks the part and turns visitors into paying clients. Built for the Kenyan market.'},
+  {icon:'pay', title:'M-Pesa Payments',     desc:'Accept payments on your website via M-Pesa. Instant notifications, automated receipts, a clean experience clients trust.'},
+  {icon:'grow',title:'Client Acquisition',  desc:'Systems that bring in enquiries while you work. Automated follow-ups and booking flows — no lead slips through.'},
+  {icon:'auto',title:'Business Automation', desc:'Replace repetitive admin with systems that run themselves — invoices, reminders, scheduling.'},
+  {icon:'vis', title:'Online Visibility',   desc:'Show up when your ideal clients search for what you offer. We build your Google presence so the right people find you.'},
 ];
-
-const auditSteps = [
-  {
-    id: 1,
-    label: 'CURRENT STATE',
-    question: 'What is your primary revenue-generating activity?',
-    type: 'radio',
-    options: ['Consulting / Professional Services', 'E-Commerce / Products', 'Media / Content', 'SaaS / Technology'],
-  },
-  {
-    id: 2,
-    label: 'THE GAP',
-    question: 'Where does your operation lose the most momentum?',
-    type: 'checkbox',
-    options: ['Manual lead follow-up', 'Fragmented payment collection', 'No content publishing system', 'Slow or absent web presence'],
-  },
-  {
-    id: 3,
-    label: 'SCALE',
-    question: 'What is your current monthly revenue range?',
-    type: 'radio',
-    options: ['Under KES 100K', 'KES 100K – 500K', 'KES 500K – 2M', 'KES 2M+'],
-  },
-  {
-    id: 4,
-    label: 'COMMITMENT',
-    question: 'How would you describe your relationship with technology?',
-    type: 'radio',
-    options: ['I avoid it — it feels like a trap', 'I use it reluctantly', 'I see the potential but need a guide', 'I want a complete infrastructure overhaul'],
-  },
+const previews = [
+  {cat:'Logistics',title:'Tuma Logistics',    desc:'A freight company drowning in WhatsApp messages — no payment system, no lead tracking.',  result:'KES 840K automated in 90 days'},
+  {cat:'Legal',    title:'MSA Legal Partners',desc:'A respected law firm with a 2018 website actively costing them clients.',                   result:'3.1× more qualified enquiries'},
 ];
 ---
+<BaseLayout title="Digital Systems That Earn" page="home">
 
-<BaseLayout
-  title="Your Infrastructure is Leaking Life"
-  description="AXIS delivers Sovereign Digital Infrastructure for Kenyan enterprises. Clinical system architecture, M-Pesa automation, and authority content. Mombasa & Nairobi."
-  schema={homeSchema}
-  page="home"
->
-
-  <!-- ── HERO SECTION ─────────────────────────── -->
-  <section style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:80px 0;">
-
-    <!-- Background geometry -->
-    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;">
-      <div style="position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 65%);"></div>
-      <div style="position:absolute;bottom:0;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(79,255,176,0.04) 0%,transparent 60%);"></div>
-      <!-- Grid lines -->
-      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.025;" preserveAspectRatio="none">
-        <defs>
-          <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(201,168,76,1)" stroke-width="0.5"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)"/>
-      </svg>
+<section style="position:relative;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(80px,12vh,120px) clamp(20px,5vw,56px) clamp(60px,8vh,80px);">
+  <canvas id="hero-canvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+  <div id="hero-content" style="position:relative;z-index:2;">
+    <div class="pill rv" style="margin-bottom:clamp(20px,3vw,32px);width:fit-content;">
+      <div class="dot"></div>
+      <span style="font-family:var(--fm);font-size:clamp(.5rem,.7vw,.6rem);letter-spacing:.16em;text-transform:uppercase;color:var(--t3);">Mombasa · Nairobi · Kenya</span>
     </div>
-
-    <div class="section-container" style="position:relative;z-index:1;">
-      <div style="max-width:800px;">
-
-        <!-- System Identifier -->
-        <div data-reveal style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
-          <div class="status-dot"></div>
-          <span class="t-label">AXIS DIAGNOSTIC ENGINE · V2.1 · MOMBASA</span>
-        </div>
-
-        <!-- Primary Headline -->
-        <h1 class="t-display-xl" data-reveal data-reveal-delay="1"
-          style="color:rgba(255,255,255,0.97);margin-bottom:24px;">
-          Your Infrastructure<br/>
-          <em style="color:var(--c-gold);font-style:italic;">is Leaking Life.</em>
-        </h1>
-
-        <!-- Sub-headline -->
-        <p data-reveal data-reveal-delay="2"
-          style="font-family:var(--font-body);font-size:clamp(1rem,2vw,1.2rem);font-weight:300;color:rgba(255,255,255,0.6);max-width:580px;line-height:1.7;margin-bottom:40px;">
-          A generic web presence is not a system — it is a liability. AXIS engineers the sovereign infrastructure that converts authority into revenue, silently, automatically, at Kenyan scale.
-        </p>
-
-        <!-- CTA Row -->
-        <div data-reveal data-reveal-delay="3" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:64px;">
-          <a href="#audit" class="btn-primary">
-            Begin Infrastructure Audit
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </a>
-          <a href="#gift" class="btn-ghost">
-            Download The AXIS Manifesto
-          </a>
-        </div>
-
-        <!-- Proof Bar -->
-        <div data-reveal data-reveal-delay="4" style="display:flex;flex-wrap:wrap;gap:32px;">
-          {metrics.map(m => (
-            <div>
-              <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--c-gold);line-height:1;">
-                {m.value}{m.suffix}
-              </div>
-              <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:4px;">{m.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <h1 class="rv" style="font-family:var(--fd);font-size:clamp(2.4rem,6vw,5.2rem);font-weight:300;line-height:1.04;letter-spacing:-.02em;color:var(--t1);max-width:700px;margin-bottom:clamp(16px,2vw,24px);transition-delay:.08s;">
+      Your Business<br/>Deserves a Presence<br/>That <em style="color:var(--gold);font-style:italic;">Earns.</em>
+    </h1>
+    <p class="rv" style="font-size:clamp(.9rem,1.4vw,1.05rem);font-weight:300;color:var(--t2);max-width:500px;line-height:1.74;margin-bottom:clamp(28px,4vw,44px);transition-delay:.18s;">
+      We build the websites, M-Pesa payment systems, and automation tools that turn your expertise into consistent revenue — so you focus on the work only you can do.
+    </p>
+    <div class="hero-ctas rv" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,72px);transition-delay:.28s;">
+      <a href="/assessment" class="btn-g">Get Free Assessment →</a>
+      <a href="/work"       class="btn-o">See Our Work</a>
     </div>
-  </section>
-
-  <!-- ── AUDIT TOOL ──────────────────────────── -->
-  <section id="audit" style="padding:100px 0;">
-    <div class="section-container">
-
-      <div style="text-align:center;margin-bottom:64px;">
-        <p class="t-label" data-reveal style="margin-bottom:12px;">INFRASTRUCTURE DIAGNOSTIC</p>
-        <h2 class="t-display-lg" data-reveal data-reveal-delay="1">
-          The <em style="color:var(--c-gold);">Authority</em> Assessment
-        </h2>
-        <p class="t-body" data-reveal data-reveal-delay="2" style="max-width:500px;margin:16px auto 0;">
-          Four clinical questions. One precise Gap Report delivered to your inbox within minutes.
-        </p>
-      </div>
-
-      <!-- Audit Card -->
-      <div data-reveal style="max-width:760px;margin:0 auto;" id="audit-tool">
-        <div class="glass-card" style="padding:48px;position:relative;overflow:hidden;">
-          <!-- Scan line -->
-          <div class="scan-line"></div>
-
-          <!-- Progress Indicator -->
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:40px;" id="audit-progress">
-            {auditSteps.map((s, i) => (
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div
-                  data-step-dot={s.id}
-                  style={`width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.65rem;font-weight:500;border:1px solid;transition:all 0.3s;${i===0?'background:var(--c-gold);color:var(--c-void);border-color:var(--c-gold);':'background:transparent;color:rgba(255,255,255,0.3);border-color:rgba(255,255,255,0.12);'}`}
-                >
-                  {s.id}
-                </div>
-                <span style={`font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;${i===0?'color:rgba(255,255,255,0.7);':'color:rgba(255,255,255,0.25);'}`}>{s.label}</span>
-                {i < auditSteps.length - 1 && (
-                  <div style="width:32px;height:1px;background:rgba(255,255,255,0.1);margin:0 4px;"></div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <!-- Steps -->
-          {auditSteps.map((step, idx) => (
-            <div
-              data-audit-step={step.id}
-              style={`display:${idx===0?'block':'none'};`}
-            >
-              <p class="t-label" style="margin-bottom:8px;">STEP {step.id} OF 4</p>
-              <h3 style="font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:rgba(255,255,255,0.95);margin-bottom:28px;line-height:1.2;">
-                {step.question}
-              </h3>
-
-              <div style="display:flex;flex-direction:column;gap:10px;" data-options={step.id}>
-                {step.options.map((opt, oi) => (
-                  <label style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:10px;cursor:pointer;transition:all 0.2s;user-select:none;" class="audit-option">
-                    <input
-                      type={step.type === 'radio' ? 'radio' : 'checkbox'}
-                      name={`step-${step.id}`}
-                      value={opt}
-                      style="accent-color:var(--c-gold);width:16px;height:16px;"
-                    />
-                    <span style="font-family:var(--font-body);font-size:0.95rem;color:rgba(255,255,255,0.75);">{opt}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <!-- Final Step: Email Capture -->
-          <div data-audit-step="5" style="display:none;">
-            <p class="t-label" style="margin-bottom:8px;">ALMOST DONE</p>
-            <h3 style="font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:rgba(255,255,255,0.95);margin-bottom:12px;">
-              Where shall we dispatch your Gap Report?
-            </h3>
-            <p class="t-body" style="margin-bottom:28px;font-size:0.9rem;">
-              A custom Infrastructure Gap Report, generated in real-time from your inputs, will be sent immediately.
-            </p>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <input type="text"  id="audit-name"  class="input-field" placeholder="Your full name" autocomplete="name" />
-              <input type="email" id="audit-email" class="input-field" placeholder="hello@yourbusiness.com" autocomplete="email" />
-            </div>
-          </div>
-
-          <!-- Navigation Buttons -->
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:36px;">
-            <button
-              id="audit-back"
-              class="btn-ghost"
-              style="display:none;"
-              onclick="window.__auditNav(-1)"
-            >
-              ← Back
-            </button>
-            <div></div>
-            <button
-              id="audit-next"
-              class="btn-primary"
-              onclick="window.__auditNav(1)"
-            >
-              Continue
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
-          </div>
-
-          <!-- Result State -->
-          <div id="audit-success" style="display:none;text-align:center;padding:40px 0;">
-            <div style="width:56px;height:56px;border-radius:50%;background:rgba(79,255,176,0.1);border:1px solid rgba(79,255,176,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L19 7" stroke="#4FFFB0" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <h3 style="font-family:var(--font-display);font-size:1.8rem;color:rgba(255,255,255,0.95);margin-bottom:8px;">Report Dispatched.</h3>
-            <p class="t-body" style="font-size:0.9rem;">Your Infrastructure Gap Report is en route. Check your inbox within 5 minutes.</p>
-            <a href="/initiate" class="btn-primary" style="margin-top:28px;display:inline-flex;">
-              Schedule Deep-Dive Session
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── GIFT SECTION ────────────────────────── -->
-  <section id="gift" style="padding:80px 0;">
-    <div class="section-container">
-      <div class="glass-card" data-reveal style="padding:56px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,rgba(20,20,23,0.95) 50%);">
+    <div class="rv" style="display:flex;gap:clamp(24px,4vw,48px);flex-wrap:wrap;transition-delay:.38s;">
+      {[{v:'47',l:'Projects Delivered'},{v:'KES 3.2M',l:'Payments Automated'},{v:'100%',l:'On-Time Delivery'},{v:'98ms',l:'Avg. Load Speed'}].map(p=>(
         <div>
-          <p class="t-label" style="margin-bottom:12px;">FREE RESOURCE</p>
-          <h2 style="font-family:var(--font-display);font-size:2.2rem;font-weight:400;color:rgba(255,255,255,0.97);margin-bottom:16px;line-height:1.15;">
-            The AXIS Manifesto:<br/><em style="color:var(--c-gold);">How Sovereign Infrastructure Is Built</em>
-          </h2>
-          <p class="t-body" style="max-width:480px;margin-bottom:28px;">
-            38 pages of clinical methodology, vocabulary architecture, and the exact system blueprints AXIS uses for every infrastructure engagement. No registration required.
-          </p>
-          <a href="/vault/axis-manifesto.pdf" class="btn-primary" download>
-            Download PDF — Free
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4.5 6.5l2.5 3 2.5-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </a>
+          <div style="font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:var(--gold);line-height:1;">{p.v}</div>
+          <div style="font-family:var(--fm);font-size:clamp(.48rem,.65vw,.58rem);letter-spacing:.1em;color:var(--t3);text-transform:uppercase;margin-top:4px;">{p.l}</div>
         </div>
-
-        <div style="width:180px;height:240px;background:linear-gradient(145deg,rgba(201,168,76,0.12) 0%,rgba(20,20,23,0.8) 100%);border:1px solid rgba(201,168,76,0.2);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;box-shadow:var(--shadow-glow-gold);flex-shrink:0;" class="hidden md:flex">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <path d="M16 6h16l10 10v26H6V6h10z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
-            <path d="M32 6v10h10" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M14 24h20M14 30h14" stroke="rgba(201,168,76,0.5)" stroke-width="1" stroke-linecap="round"/>
-          </svg>
-          <span style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--c-gold);text-align:center;">THE AXIS<br/>MANIFESTO</span>
-        </div>
-      </div>
+      ))}
     </div>
-  </section>
+  </div>
+  <div style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;animation:float 2s ease-in-out infinite;" aria-hidden="true">
+    <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:var(--t3);text-transform:uppercase;">scroll</span>
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none"><rect x="6" y="0" width="4" height="10" rx="2" fill="rgba(201,168,76,.5)"/><path d="M4 13l4 5 4-5" stroke="rgba(201,168,76,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
 
-  <!-- ── PROOF BENTO GRID ────────────────────── -->
-  <section style="padding:80px 0 120px;">
-    <div class="section-container">
-      <div style="text-align:center;margin-bottom:56px;">
-        <p class="t-label" data-reveal style="margin-bottom:12px;">LIVE INFRASTRUCTURE METRICS</p>
-        <h2 class="t-display-md" data-reveal data-reveal-delay="1">
-          The System <em style="color:var(--c-gold);">Speaks</em> for Itself
-        </h2>
+<section class="sec" style="background:rgba(14,34,20,.5);">
+  <p class="lbl rv" style="margin-bottom:8px;">What We Do</p>
+  <h2 class="sh rv" style="margin-bottom:8px;transition-delay:.08s;">Everything Your Business<br/><em style="color:var(--gold);font-style:italic;">Needs Online</em></h2>
+  <p class="body-t rv" style="margin-bottom:clamp(24px,4vw,40px);max-width:480px;transition-delay:.16s;">From your first website to a fully automated operation — we build it, launch it, and keep it running.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:clamp(10px,1.5vw,14px);">
+    {services.map((s,i)=>(
+      <div class="gc rv svc-card" style={`padding:clamp(20px,3vw,28px);position:relative;overflow:hidden;transition-delay:${i*.06}s;`}>
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s;" class="svc-line"></div>
+        <div style="width:40px;height:40px;border-radius:9px;background:var(--gd2);border:1px solid var(--gbh);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          {s.icon==='grid'&&<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="#C9A84C" stroke-width="1.1"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="#C9A84C" stroke-width="1.1"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="#C9A84C" stroke-width="1.1"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="#C9A84C" stroke-width="1.1" opacity=".4"/></svg>}
+          {s.icon==='pay'&&<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#C9A84C" stroke-width="1.1"/><path d="M6 9h6M9 6v6" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round"/></svg>}
+          {s.icon==='grow'&&<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13l4-4 3 3 5-5" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+          {s.icon==='auto'&&<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v4M9 12v4M2 9h4M12 9h4" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round"/><circle cx="9" cy="9" r="3" stroke="#C9A84C" stroke-width="1.1"/></svg>}
+          {s.icon==='vis'&&<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="#C9A84C" stroke-width="1.1"/><path d="M3 16c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="#C9A84C" stroke-width="1.1" stroke-linecap="round"/></svg>}
+        </div>
+        <h3 style="font-family:var(--fd);font-size:clamp(1.1rem,1.5vw,1.2rem);font-weight:400;color:var(--t1);margin-bottom:6px;">{s.title}</h3>
+        <p style="font-size:clamp(.78rem,1vw,.82rem);font-weight:300;color:var(--t3);line-height:1.64;">{s.desc}</p>
       </div>
-
-      <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:16px;">
-
-        <!-- Large metric -->
-        <div class="glass-card metric-chip" data-reveal style="grid-column:span 4;padding:32px;">
-          <span class="value" style="font-size:3rem;">47</span>
-          <span class="label">Total Systems Under Management</span>
-          <div style="margin-top:16px;height:2px;background:linear-gradient(to right,var(--c-gold),transparent);border-radius:1px;"></div>
-        </div>
-
-        <div class="glass-card metric-chip" data-reveal data-reveal-delay="1" style="grid-column:span 4;padding:32px;">
-          <span class="value" style="font-size:3rem;">98<span style="font-size:1.4rem;">ms</span></span>
-          <span class="label">Avg. API Response Latency</span>
-          <div style="margin-top:16px;height:2px;background:linear-gradient(to right,var(--c-signal),transparent);border-radius:1px;"></div>
-        </div>
-
-        <div class="glass-card metric-chip" data-reveal data-reveal-delay="2" style="grid-column:span 4;padding:32px;">
-          <span class="value" style="font-size:3rem;color:var(--c-signal);">3.2M</span>
-          <span class="label">KES Automated via M-Pesa This Year</span>
-          <div style="margin-top:16px;height:2px;background:linear-gradient(to right,var(--c-signal),transparent);border-radius:1px;"></div>
-        </div>
-
-        <!-- Wide status bar -->
-        <div class="glass-card" data-reveal style="grid-column:span 8;padding:32px;display:flex;justify-content:space-between;align-items:center;gap:24px;">
-          <div>
-            <p class="t-label" style="margin-bottom:8px;">SYSTEM UPTIME — CURRENT YEAR</p>
-            <div style="font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--c-gold);">100%</div>
-          </div>
-          <div style="flex:1;display:flex;gap:3px;align-items:flex-end;height:48px;">
-            {Array.from({length:52},(_,i) => (
-              <div style={`flex:1;border-radius:2px 2px 0 0;background:rgba(79,255,176,${0.2 + Math.random()*0.7});height:${60+Math.random()*40}%;`}></div>
-            ))}
-          </div>
-        </div>
-
-        <div class="glass-card" data-reveal data-reveal-delay="1" style="grid-column:span 4;padding:32px;display:flex;flex-direction:column;justify-content:space-between;">
-          <div>
-            <p class="t-label" style="margin-bottom:8px;">LEAD CONVERSION RATE</p>
-            <div style="font-family:var(--font-display);font-size:2.8rem;font-weight:300;color:var(--c-ember);">68%</div>
-          </div>
-          <a href="/archive" style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.12em;color:rgba(255,255,255,0.45);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:4px;display:inline-block;margin-top:12px;">
-            Review Infrastructure Archive →
-          </a>
-        </div>
-
-      </div>
+    ))}
+    <div class="gc rv" style="padding:clamp(20px,3vw,28px);background:var(--gd2);border-color:var(--gbh);">
+      <p class="lbl" style="margin-bottom:8px;">Not sure where to start?</p>
+      <h3 style="font-family:var(--fd);font-size:clamp(1.1rem,1.5vw,1.3rem);font-weight:300;color:var(--t1);margin-bottom:8px;">Get a free<br/>business review</h3>
+      <p style="font-size:clamp(.76rem,1vw,.82rem);font-weight:300;color:var(--t3);line-height:1.64;margin-bottom:16px;">We look at your situation and tell you what will make the biggest difference. Free. No obligation.</p>
+      <a href="/assessment" class="btn-g" style="width:100%;justify-content:center;font-size:.72rem;">Book Assessment →</a>
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="sec">
+  <div id="why-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,56px);align-items:center;">
+    <div>
+      <p class="lbl rv" style="margin-bottom:8px;">Why AXIS</p>
+      <h2 class="sh rv" style="margin-bottom:16px;transition-delay:.08s;">We Build Systems,<br/><em style="color:var(--gold);font-style:italic;">Not Just Websites</em></h2>
+      <p class="body-t rv" style="margin-bottom:12px;transition-delay:.16s;">Most agencies hand you a website and disappear. We build everything together — your website, payments, communications, and visibility — so each part makes the others stronger.</p>
+      <p class="body-t rv" style="margin-bottom:24px;transition-delay:.24s;">Like the Fibonacci sequence, every part of your digital system compounds. Each client brings better clients. The system grows with you.</p>
+      <a href="/work" class="btn-o rv" style="transition-delay:.32s;">See Results →</a>
+    </div>
+    <div class="rv" style="position:relative;height:clamp(240px,35vw,340px);transition-delay:.12s;">
+      <canvas id="fib-sm" style="width:100%;height:100%;"></canvas>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:clamp(20px,3vw,32px);">
+    <div>
+      <p class="lbl rv" style="margin-bottom:6px;">Recent Work</p>
+      <h2 class="sh rv" style="transition-delay:.08s;">Businesses We've<br/><em style="color:var(--gold);font-style:italic;">Transformed</em></h2>
+    </div>
+    <a href="/work" class="btn-o rv">View All Work →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px;">
+    {previews.map((p,i)=>(
+      <a href="/work" style="text-decoration:none;">
+        <div class="gc rv" style={`padding:clamp(18px,3vw,26px);transition-delay:${i*.08}s;`}>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+            <span class="cat-tag">{p.cat}</span>
+            <div style="display:flex;align-items:center;gap:5px;margin-left:auto;"><div class="dot"></div><span style="font-family:var(--fm);font-size:.54rem;color:rgba(79,255,176,.65);">Live</span></div>
+          </div>
+          <h3 style="font-family:var(--fd);font-size:clamp(1.3rem,2vw,1.5rem);font-weight:300;color:var(--t1);margin-bottom:6px;">{p.title}</h3>
+          <p style="font-size:clamp(.78rem,1vw,.82rem);font-weight:300;color:var(--t3);line-height:1.62;margin-bottom:12px;">{p.desc}</p>
+          <div class="rb"><div class="rl">Result</div><div class="rval">{p.result}</div></div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0;">
+  <div class="gc-dark rv" style="padding:clamp(32px,5vw,52px);text-align:center;">
+    <p class="lbl" style="margin-bottom:10px;">Ready to Start?</p>
+    <h2 class="sh" style="margin-bottom:12px;">Let's Talk About<br/><em style="color:var(--gold);font-style:italic;">Your Business</em></h2>
+    <p class="body-t" style="max-width:440px;margin:0 auto clamp(24px,4vw,36px);">Tell us where you are and where you want to go. We'll come back with a clear plan and a price that makes sense.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <a href="/assessment" class="btn-g" style="font-size:.86rem;padding:12px 26px;">Start Free Assessment →</a>
+      <a href="/work"       class="btn-o" style="font-size:.86rem;padding:12px 26px;">See Our Work</a>
+    </div>
+  </div>
+</section>
 
 </BaseLayout>
 
-<!-- ── Audit Island Script ─────────────────── -->
-<script>
-  let currentStep = 1;
-  const totalSteps = 4;
-  const auditData: Record<string, string[]> = {};
+<style>
+  @keyframes float{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-6px);}}
+  .svc-card:hover .svc-line{opacity:1 !important;}
+  @media(max-width:640px){#why-grid{grid-template-columns:1fr !important;}}
+</style>
 
-  window.__auditNav = function (direction: number) {
-    if (currentStep === totalSteps && direction === 1) {
-      // Show email capture
-      const activeStep = document.querySelector(`[data-audit-step="${currentStep}"]`) as HTMLElement;
-      if (activeStep) activeStep.style.display = 'none';
-      const emailStep = document.querySelector('[data-audit-step="5"]') as HTMLElement;
-      if (emailStep) emailStep.style.display = 'block';
-      const nextBtn = document.getElementById('audit-next') as HTMLButtonElement;
-      if (nextBtn) { nextBtn.textContent = 'Submit Report Request'; nextBtn.onclick = submitAudit; }
-      currentStep = 5;
-      updateProgress();
-      return;
+<script is:inline>
+// Hero canvas
+(function(){
+  var c=document.getElementById('hero-canvas');if(!c)return;
+  var PHI=1.618;
+  function draw(){
+    var w=c.offsetWidth,h=c.offsetHeight;c.width=w;c.height=h;
+    var x=c.getContext('2d');
+    x.strokeStyle='rgba(201,168,76,.09)';x.lineWidth=1;
+    var rw=Math.min(w,h)*.5,rh=rw/PHI,rx=w*.1,ry=h*.15;
+    for(var i=0;i<6;i++){x.strokeRect(rx,ry,rw,rh);rh=rw/PHI;rw=rh;rx+=rw*.04;ry+=rh*.04;}
+    x.strokeStyle='rgba(201,168,76,.1)';x.lineWidth=1.2;
+    x.beginPath();
+    var cx=w*.76,cy=h*.5;
+    for(var a=0;a<Math.PI*6;a+=.04){
+      var r=3*Math.pow(PHI,a/Math.PI/2);
+      var px=cx+r*Math.cos(a),py=cy+r*Math.sin(a);
+      a===0?x.moveTo(px,py):x.lineTo(px,py);
+      if(r>Math.max(w,h))break;
     }
-
-    if (currentStep === 5 && direction === 1) { submitAudit(); return; }
-
-    const activeStep = document.querySelector(`[data-audit-step="${currentStep}"]`) as HTMLElement;
-    if (activeStep) activeStep.style.display = 'none';
-
-    const newStep = currentStep + direction;
-    const nextStepEl = document.querySelector(`[data-audit-step="${newStep}"]`) as HTMLElement;
-    if (nextStepEl) nextStepEl.style.display = 'block';
-
-    currentStep = newStep;
-    updateProgress();
-  };
-
-  function updateProgress() {
-    const backBtn = document.getElementById('audit-back') as HTMLElement;
-    if (backBtn) backBtn.style.display = currentStep > 1 ? 'block' : 'none';
-
-    for (let i = 1; i <= 4; i++) {
-      const dot = document.querySelector(`[data-step-dot="${i}"]`) as HTMLElement;
-      if (!dot) continue;
-      if (i < currentStep) {
-        dot.style.background = 'rgba(79,255,176,0.2)';
-        dot.style.borderColor = 'rgba(79,255,176,0.4)';
-        dot.style.color = 'var(--c-signal)';
-      } else if (i === currentStep) {
-        dot.style.background = 'var(--c-gold)';
-        dot.style.borderColor = 'var(--c-gold)';
-        dot.style.color = 'var(--c-void)';
-      } else {
-        dot.style.background = 'transparent';
-        dot.style.borderColor = 'rgba(255,255,255,0.12)';
-        dot.style.color = 'rgba(255,255,255,0.3)';
-      }
-    }
-  }
-
-  async function submitAudit() {
-    const name  = (document.getElementById('audit-name')  as HTMLInputElement)?.value?.trim();
-    const email = (document.getElementById('audit-email') as HTMLInputElement)?.value?.trim();
-    if (!name || !email) { alert('Please enter your name and email.'); return; }
-
-    const nextBtn = document.getElementById('audit-next') as HTMLButtonElement;
-    if (nextBtn) { nextBtn.textContent = 'Processing…'; nextBtn.disabled = true; }
-
-    try {
-      await fetch('/api/v1/audit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, responses: auditData }),
-      });
-    } catch (_) { /* graceful degradation */ }
-
-    const tool       = document.getElementById('audit-tool') as HTMLElement;
-    const successEl  = document.getElementById('audit-success') as HTMLElement;
-    const allContent = tool?.querySelectorAll('[data-audit-step], #audit-progress, #audit-back, #audit-next') as NodeListOf<HTMLElement>;
-    allContent?.forEach(el => { el.style.display = 'none'; });
-    if (successEl) successEl.style.display = 'block';
-  }
-
-  // Option hover styles
-  document.querySelectorAll('.audit-option').forEach(opt => {
-    opt.addEventListener('mouseenter', () => {
-      (opt as HTMLElement).style.borderColor = 'rgba(201,168,76,0.3)';
-      (opt as HTMLElement).style.background  = 'rgba(201,168,76,0.04)';
+    x.stroke();
+    x.fillStyle='rgba(201,168,76,.22)';
+    [1,1,2,3,5,8,13,21,34].forEach(function(f,i){
+      var a=i*Math.PI/PHI;
+      x.beginPath();x.arc(w/2+f*Math.cos(a)*5,h/2+f*Math.sin(a)*3.5,Math.min(f*.18+.5,3),0,Math.PI*2);x.fill();
     });
-    opt.addEventListener('mouseleave', () => {
-      (opt as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)';
-      (opt as HTMLElement).style.background  = 'rgba(255,255,255,0.02)';
+  }
+  window.addEventListener('resize',draw,{passive:true});
+  setTimeout(draw,50);
+})();
+
+// Fib small canvas
+(function(){
+  var c=document.getElementById('fib-sm');if(!c)return;
+  function draw(){
+    var w=c.offsetWidth,h=c.offsetHeight;
+    c.width=w*2;c.height=h*2;
+    var x=c.getContext('2d');x.scale(2,2);
+    var u=Math.min(w,h)/50,cx=w/2,cy=h/2;
+    [[cx,cy-u,u],[cx-u,cy-u,u],[cx-u,cy-2*u,u*2],[cx,cy-u*4,u*3],[cx-u*5,cy-u*5,u*5],[cx-u*5,cy+u*3,u*8]].forEach(function(r,i){
+      x.strokeStyle=i%2?'rgba(45,107,63,.35)':'rgba(201,168,76,.22)';x.lineWidth=.7;
+      x.strokeRect(r[0],r[1],r[2],r[2]);
     });
-  });
+    x.strokeStyle='rgba(201,168,76,.55)';x.lineWidth=1.1;
+    [[cx+u,cy,u,Math.PI,1.5*Math.PI],[cx-u,cy-u,u,0,.5*Math.PI],[cx-u,cy+u,u*2,1.5*Math.PI,2*Math.PI],[cx+u*3,cy-u,u*3,.5*Math.PI,Math.PI],[cx+u*3,cy+u*7,u*5,Math.PI,1.5*Math.PI]].forEach(function(a){
+      x.beginPath();x.arc(a[0],a[1],a[2],a[3],a[4]);x.stroke();
+    });
+    x.fillStyle='rgba(201,168,76,.38)';
+    x.font=(u*.7)+'px JetBrains Mono,monospace';x.textAlign='center';
+    x.fillText('φ = 1.618…',cx+u*8,cy-u*8);
+  }
+  window.addEventListener('resize',function(){setTimeout(draw,80);},{passive:true});
+  setTimeout(draw,80);
+})();
 </script>

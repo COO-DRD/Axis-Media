@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Free Business Assessment" page="assessment">
+<section class="sec" style="padding-top:clamp(56px,10vw,80px);">
+  <div style="text-align:center;max-width:540px;margin:0 auto clamp(32px,5vw,48px);">
+    <p class="lbl rv" style="margin-bottom:8px;">Free Business Assessment</p>
+    <h1 class="sh rv" style="font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:14px;transition-delay:.08s;">Tell Us About<br/><em style="color:var(--gold);font-style:italic;">Your Business</em></h1>
+    <p class="body-t rv" style="transition-delay:.16s;">Three quick questions. We'll come back with a clear picture of what your business needs online — and what it would cost.</p>
+  </div>
+  <div style="max-width:640px;margin:0 auto;">
+    <div class="gc" style="padding:clamp(28px,5vw,44px);border-radius:18px;">
+      <div style="display:flex;gap:6px;margin-bottom:24px;" id="aprog">
+        <div class="pb pb-n" id="ap1" style="flex:2;"></div>
+        <div class="pb pb-w" id="ap2" style="flex:1;"></div>
+        <div class="pb pb-w" id="ap3" style="flex:1;"></div>
+      </div>
+      <div id="as1">
+        <p style="font-family:var(--fm);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">About Your Business · 1 of 3</p>
+        <p style="font-family:var(--fd);font-size:clamp(1.3rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:20px;line-height:1.2;">What kind of business are you running?</p>
+        <div class="opts-wrap" style="display:flex;flex-direction:column;gap:8px;">
+          {['Professional Services (lawyer, consultant, accountant)','Retail or E-Commerce','Hospitality or Events','Real Estate or Property','Tech or Digital Services','Other'].map(o=>(
+            <label class="opt"><input type="radio" name="q1"/>{o}</label>
+          ))}
+        </div>
+      </div>
+      <div id="as2" style="display:none;">
+        <p style="font-family:var(--fm);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Your Biggest Challenge · 2 of 3</p>
+        <p style="font-family:var(--fd);font-size:clamp(1.3rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:20px;line-height:1.2;">What is costing you the most right now?</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {["I'm not getting enough new clients online","Collecting payments is slow and painful","I spend too much time on admin and follow-ups","My website looks outdated and costs me clients","Competitors are showing up online and I'm not"].map(o=>(
+            <label class="opt"><input type="radio" name="q2"/>{o}</label>
+          ))}
+        </div>
+      </div>
+      <div id="as3" style="display:none;">
+        <p style="font-family:var(--fm);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Where You Are · 3 of 3</p>
+        <p style="font-family:var(--fd);font-size:clamp(1.3rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:20px;line-height:1.2;">What does your business look like online now?</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {["I have nothing — no website, no online presence","I have a basic website but it doesn't do much","I have a decent website but no automation or payments","I have a full setup but something isn't working"].map(o=>(
+            <label class="opt"><input type="radio" name="q3"/>{o}</label>
+          ))}
+        </div>
+      </div>
+      <div id="as4" style="display:none;">
+        <p style="font-family:var(--fm);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sig);margin-bottom:8px;">Almost There</p>
+        <p style="font-family:var(--fd);font-size:clamp(1.3rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:12px;line-height:1.2;">Where should we send your assessment?</p>
+        <p class="body-t" style="font-size:clamp(.78rem,1vw,.84rem);margin-bottom:18px;">We'll review your answers and reply with a personalised recommendation — usually within a few hours.</p>
+        <input class="inp" id="an"  type="text"  placeholder="Your full name"/>
+        <input class="inp" id="ae"  type="email" placeholder="Your email address"/>
+        <input class="inp" id="aph" type="tel"   placeholder="Phone / WhatsApp" style="margin-bottom:0;"/>
+      </div>
+      <div id="as-done" style="display:none;text-align:center;padding:clamp(20px,4vw,32px) 0;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(79,255,176,.09);border:1px solid rgba(79,255,176,.28);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#4FFFB0" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <p style="font-family:var(--fd);font-size:clamp(1.6rem,3vw,2rem);font-weight:300;color:var(--t1);margin-bottom:8px;">Assessment Received.</p>
+        <p class="body-t" style="max-width:360px;margin:0 auto 24px;">We'll get back to you within a few hours. Keep an eye on your inbox.</p>
+        <a href="/work" class="btn-o" style="font-size:.8rem;">Explore Our Work While You Wait →</a>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;" id="afoot">
+        <button class="btn-o" id="abk" style="display:none;font-size:.74rem;" onclick="aN(-1)">← Back</button>
+        <div></div>
+        <button class="btn-g" id="anxt" onclick="aN(1)" style="font-size:.76rem;">Continue →</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;">
+      {[{v:'Free',l:'No cost ever'},{v:'Fast',l:'Response in hours'},{v:'Clear',l:'No jargon'}].map(t=>(
+        <div class="gc" style="padding:12px;text-align:center;">
+          <div style="font-family:var(--fd);font-size:1.3rem;color:var(--gold);">{t.v}</div>
+          <div class="lbl" style="font-size:.5rem;margin-top:3px;">{t.l}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+</BaseLayout>
+
+<script is:inline>
+var aStep=1;
+function aN(d){
+  if(d===1&&aStep===4){submitA();return;}
+  document.getElementById('as'+aStep).style.display='none';
+  aStep=Math.max(1,Math.min(4,aStep+d));
+  document.getElementById('as'+aStep).style.display='block';
+  updateAP();
+  document.getElementById('abk').style.display=aStep>1?'block':'none';
+  var nxt=document.getElementById('anxt');
+  nxt.textContent=aStep===4?'Send Assessment →':'Continue →';
+  nxt.onclick=aStep===4?submitA:function(){aN(1);};
+}
+function updateAP(){
+  for(var i=1;i<=3;i++){
+    var el=document.getElementById('ap'+i);
+    el.className='pb '+(i<aStep?'pb-d':i===aStep?'pb-n':'pb-w');
+    el.style.flex=i===aStep?'2':'1';
+  }
+}
+function submitA(){
+  var n=document.getElementById('an').value.trim();
+  var e=document.getElementById('ae').value.trim();
+  var ph=document.getElementById('aph').value.trim();
+  if(!n||!e){alert('Please enter your name and email.');return;}
+  var btn=document.getElementById('anxt');
+  btn.textContent='Sending…';btn.disabled=true;
+  fetch('/api/v1/audit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,phone:ph,source:'assessment'})}).catch(function(){});
+  setTimeout(function(){
+    for(var i=1;i<=4;i++){var el=document.getElementById('as'+i);if(el)el.style.display='none';}
+    document.getElementById('aprog').style.display='none';
+    document.getElementById('afoot').style.display='none';
+    document.getElementById('as-done').style.display='block';
+  },700);
+}
+document.querySelectorAll('.opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    var n=o.querySelector('input').name;
+    if(n)document.querySelectorAll('input[name="'+n+'"]').forEach(function(i){i.closest('.opt').classList.remove('sel');});
+    o.classList.add('sel');
+  });
+});
+</script>

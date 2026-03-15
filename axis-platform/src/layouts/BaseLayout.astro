@@ -1,250 +1,229 @@
 ---
 import '../styles/global.css';
-
 interface Props {
   title: string;
   description?: string;
-  schema?: Record<string, unknown>;
   page?: string;
 }
-
-const {
-  title,
-  description = 'AXIS Media and Web Services — Sovereign Digital Infrastructure, Mombasa Kenya. System Architecture, M-Pesa Integration, Authority Content.',
-  schema,
-  page = '',
-} = Astro.props;
-
-const canonicalURL = new URL(Astro.url.pathname, 'https://axismediaws.com');
+const { title, description = 'AXIS Media and Web Services — Digital systems for Kenyan businesses. Websites, M-Pesa payments, automation. Mombasa & Nairobi.', page = '' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, 'https://axismediaws.com');
 ---
-
 <!doctype html>
-<html lang="en" data-page={page}>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0A0A0B" />
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="theme-color" content="#060E08"/>
   <title>{title} | AXIS Media & Web Services</title>
-  <meta name="description" content={description} />
-  <link rel="canonical" href={canonicalURL} />
-
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content={canonicalURL} />
-  <meta property="og:title"       content={`${title} | AXIS Media`} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image"       content="https://axismediaws.com/og-card.jpg" />
-  <meta name="twitter:card"       content="summary_large_image" />
-
-  <!-- SEO / Geo -->
-  <meta name="geo.region"   content="KE-MSA" />
-  <meta name="geo.placename" content="Mombasa, Kenya" />
-  <meta name="geo.position" content="-4.0435;39.6682" />
-  <meta name="ICBM"         content="-4.0435, 39.6682" />
-
-  <!-- Preloads -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <!-- Eco-Mode Detection (inline, zero-render-block) -->
+  <meta name="description" content={description}/>
+  <link rel="canonical" href={canonical}/>
+  <meta property="og:title" content={`${title} | AXIS Media`}/>
+  <meta property="og:description" content={description}/>
+  <meta property="og:type" content="website"/>
+  <meta name="geo.region" content="KE-MSA"/>
+  <meta name="geo.placename" content="Mombasa, Kenya"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <script is:inline>
-    (function () {
-      const mq = window.matchMedia;
-      const prefersReducedData =
-        (mq && mq('(prefers-reduced-data: reduce)').matches) ||
-        (navigator.connection && (
-          navigator.connection.saveData ||
-          ['slow-2g','2g'].includes(navigator.connection.effectiveType)
-        ));
-
-      const storedMode = localStorage.getItem('axis-eco');
-      const shouldEco  = storedMode === 'on' || (storedMode === null && prefersReducedData);
-
-      if (shouldEco) document.documentElement.classList.add('low-data');
-
-      window.__axisToggleEco = function () {
-        const isEco = document.documentElement.classList.toggle('low-data');
-        localStorage.setItem('axis-eco', isEco ? 'on' : 'off');
-        const btn = document.getElementById('eco-toggle');
-        if (btn) btn.textContent = isEco ? 'ECO ON' : 'ECO OFF';
-      };
+    (function(){
+      var c=navigator.connection;
+      if((c&&(c.saveData||['slow-2g','2g'].indexOf(c.effectiveType)>-1))||localStorage.getItem('axis-eco')==='on')
+        document.documentElement.classList.add('low-data');
     })();
   </script>
-
-  <!-- Dynamic JSON-LD -->
-  {schema && (
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      ...schema,
-    })} />
-  )}
-
-  <!-- Default Organization Schema -->
-  <script type="application/ld+json">{JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'AXIS Media and Web Services',
-    url: 'https://axismediaws.com',
-    logo: 'https://axismediaws.com/logo.svg',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Mombasa',
-      addressCountry: 'KE',
-    },
-    sameAs: ['https://twitter.com/axismediaws'],
-    description: 'Sovereign Digital Infrastructure for the Kenyan market — System Architecture, M-Pesa Integration, and Authority Content Systems.',
-  })}</script>
 </head>
-
 <body>
-  <!-- Navigation -->
-  <header class="fixed top-0 left-0 right-0 z-50" id="site-nav">
-    <div class="section-container">
-      <nav class="flex items-center justify-between h-16">
-        <!-- Wordmark -->
-        <a href="/" class="flex items-center gap-3 group" aria-label="AXIS Home">
-          <div class="relative w-8 h-8">
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-              <path d="M16 2L30 28H2L16 2Z" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
-              <path d="M8 20H24" stroke="#C9A84C" stroke-width="1" opacity="0.5"/>
-              <circle cx="16" cy="16" r="3" fill="#C9A84C" opacity="0.7"/>
-            </svg>
-          </div>
-          <span style="font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.2em;color:rgba(255,255,255,0.9);">AXIS</span>
-        </a>
 
-        <!-- Links -->
-        <div class="hidden md:flex items-center gap-8">
-          <a href="/"          class="nav-link" aria-current={page === 'home'      ? 'page' : undefined}>Diagnostic</a>
-          <a href="/solutions" class="nav-link" aria-current={page === 'solutions' ? 'page' : undefined}>Methodology</a>
-          <a href="/archive"   class="nav-link" aria-current={page === 'archive'   ? 'page' : undefined}>Archive</a>
-          <a href="/status"    class="nav-link">System Status</a>
-        </div>
+<canvas id="fib-bg" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.055;"></canvas>
 
-        <!-- Right Controls -->
-        <div class="flex items-center gap-4">
-          <button
-            id="eco-toggle"
-            onclick="window.__axisToggleEco()"
-            style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.14em;padding:6px 12px;border:1px solid rgba(255,255,255,0.12);border-radius:4px;background:transparent;color:rgba(255,255,255,0.45);cursor:pointer;transition:all 0.15s ease;"
-            aria-label="Toggle eco mode"
-          >ECO OFF</button>
-          <a href="/initiate" class="btn-primary" style="padding:10px 20px;font-size:0.78rem;">
-            Initiate
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </a>
-        </div>
-      </nav>
+<div class="mob-menu" id="mob-menu" role="navigation">
+  <a href="/"           class="mob-link" aria-current={page==='home'       ?'page':undefined}>Home</a>
+  <a href="/work"       class="mob-link" aria-current={page==='work'       ?'page':undefined}>Our Work</a>
+  <a href="/assessment" class="mob-link" aria-current={page==='assessment' ?'page':undefined}>Assessment</a>
+  <a href="/contact"    class="mob-link" aria-current={page==='contact'    ?'page':undefined}>Contact & FAQ</a>
+  <a href="/assessment" class="btn-g" style="margin-top:4px;justify-content:center;">Start Free Assessment</a>
+</div>
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:500;">
+  <nav id="main-nav" style="height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,36px);background:rgba(6,14,8,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--gb);">
+    <a href="/" style="display:flex;align-items:center;gap:9px;text-decoration:none;font-family:var(--fm);font-size:.74rem;letter-spacing:.22em;color:var(--t1);">
+      <canvas id="logo-c" width="24" height="24" aria-hidden="true"></canvas>
+      AXIS
+    </a>
+    <div class="hide-mob" style="display:flex;gap:2px;background:rgba(255,255,255,.04);border:1px solid var(--gb);border-radius:8px;padding:3px;">
+      <a href="/"           class="nav-link" aria-current={page==='home'       ?'page':undefined}>Home</a>
+      <a href="/work"       class="nav-link" aria-current={page==='work'       ?'page':undefined}>Our Work</a>
+      <a href="/assessment" class="nav-link" aria-current={page==='assessment' ?'page':undefined}>Assessment</a>
+      <a href="/contact"    class="nav-link" aria-current={page==='contact'    ?'page':undefined}>Contact</a>
     </div>
-
-    <!-- Nav Border -->
-    <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.2),transparent);"></div>
-  </header>
-
-  <!-- Page Content -->
-  <main style="padding-top:64px;">
-    <slot />
-  </main>
-
-  <!-- Footer -->
-  <footer style="margin-top:120px;padding:60px 0 40px;border-top:1px solid var(--c-border);">
-    <div class="section-container">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;margin-bottom:48px;" class="footer-grid">
-        <div>
-          <p class="t-label" style="margin-bottom:16px;">AXIS Media & Web Services</p>
-          <p class="t-body" style="font-size:0.875rem;">Sovereign Digital Infrastructure.<br/>Mombasa · Nairobi · Kenya</p>
-          <div style="margin-top:20px;display:flex;align-items:center;gap:8px;">
-            <div class="status-dot"></div>
-            <span style="font-family:var(--font-mono);font-size:0.68rem;color:rgba(255,255,255,0.45);letter-spacing:0.1em;">ALL SYSTEMS OPERATIONAL</span>
-          </div>
-        </div>
-
-        <div>
-          <p class="t-label" style="margin-bottom:16px;">Infrastructure Nodes</p>
-          <nav style="display:flex;flex-direction:column;gap:10px;">
-            <a href="/"          class="nav-link">Clinical Diagnostic</a>
-            <a href="/solutions" class="nav-link">Infrastructure Methodology</a>
-            <a href="/archive"   class="nav-link">Systems Archive</a>
-            <a href="/initiate"  class="nav-link">Vetting Intake</a>
-            <a href="/vault"     class="nav-link">Resource Vault</a>
-            <a href="/status"    class="nav-link">Infrastructure Monitor</a>
-          </nav>
-        </div>
-
-        <div>
-          <p class="t-label" style="margin-bottom:16px;">SEO Sovereignty Map</p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;">
-            {['Digital Infrastructure Kenya','System Architecture Mombasa','M-Pesa API Integration','Web Services Nairobi','Authority Content Systems','CEO Automation Kenya','FastAPI Development KE','Supabase Architecture'].map(kw => (
-              <span style="font-family:var(--font-mono);font-size:0.62rem;padding:4px 10px;background:rgba(255,255,255,0.03);border:1px solid var(--c-border);border-radius:4px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">{kw}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <hr class="rule-subtle" style="margin-bottom:28px;" />
-
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
-        <p style="font-family:var(--font-mono);font-size:0.68rem;color:rgba(255,255,255,0.3);letter-spacing:0.08em;">
-          © {new Date().getFullYear()} AXIS MEDIA AND WEB SERVICES. ALL SYSTEMS SOVEREIGN.
-        </p>
-        <div style="display:flex;gap:24px;">
-          <a href="/initiate" class="nav-link">Begin Infrastructure Audit</a>
-          <a href="/solutions" class="nav-link">Review Infrastructure Archive</a>
-        </div>
-      </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <a href="/assessment" class="btn-g hide-mob" style="font-size:.72rem;padding:8px 16px;">Free Assessment</a>
+      <button class="ham" id="ham" onclick="toggleMob()" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </footer>
+  </nav>
+</header>
 
-  <!-- Floating Dock (Mobile Primary CTAs) -->
-  <div class="floating-dock md:hidden" role="navigation" aria-label="Primary actions">
-    <a href="/initiate" class="btn-primary" style="padding:10px 16px;font-size:0.78rem;">Audit</a>
-    <a href="/#mpesa" class="btn-signal" style="padding:10px 16px;font-size:0.72rem;">M-Pesa</a>
-    <a href="/initiate#contact" class="btn-ghost" style="padding:10px 16px;font-size:0.78rem;">Contact</a>
+<main style="padding-top:54px;">
+  <slot/>
+</main>
+
+<div class="float-dock" role="navigation" aria-label="Quick actions">
+  <a href="/assessment" class="btn-g" style="font-size:.7rem;padding:8px 14px;">Assess</a>
+  <a href="/contact"    class="btn-o" style="font-size:.7rem;padding:7px 12px;">Contact</a>
+  <a href="/work"       class="btn-o" style="font-size:.7rem;padding:7px 12px;">Work</a>
+</div>
+
+<footer style="padding:clamp(32px,5vw,48px) clamp(20px,5vw,40px) clamp(20px,3vw,28px);border-top:1px solid var(--gb);position:relative;z-index:1;">
+  <div id="fg" style="display:grid;grid-template-columns:1.1fr .8fr 1fr;gap:clamp(20px,4vw,40px);margin-bottom:clamp(24px,4vw,32px);">
+    <div>
+      <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--fm);font-size:.72rem;letter-spacing:.2em;color:var(--t1);margin-bottom:12px;">
+        <canvas id="flogo-c" width="20" height="20" aria-hidden="true"></canvas>AXIS
+      </a>
+      <p style="font-size:clamp(.76rem,.9vw,.82rem);font-weight:300;color:var(--t3);line-height:1.65;margin-bottom:12px;">Digital systems for Kenyan businesses.<br/>Mombasa · Nairobi · Kenya</p>
+      <div style="display:flex;align-items:center;gap:7px;"><div class="dot"></div><span style="font-family:var(--fm);font-size:.54rem;color:var(--t3);letter-spacing:.08em;">ALL SYSTEMS LIVE</span></div>
+    </div>
+    <div>
+      <p class="lbl" style="margin-bottom:10px;">Navigate</p>
+      <a href="/"            class="footer-link">Home</a>
+      <a href="/work"        class="footer-link">Our Work</a>
+      <a href="/assessment"  class="footer-link">Free Assessment</a>
+      <a href="/contact"     class="footer-link">Contact & FAQ</a>
+    </div>
+    <div>
+      <p class="lbl" style="margin-bottom:10px;">Get Started</p>
+      <p style="font-size:clamp(.76rem,.9vw,.8rem);font-weight:300;color:var(--t3);line-height:1.65;margin-bottom:14px;">Book a free assessment. We'll review your business and show you what's possible.</p>
+      <a href="/assessment" class="btn-g" style="font-size:.7rem;padding:8px 16px;">Book Assessment</a>
+    </div>
   </div>
+  <div style="border-top:1px solid rgba(255,255,255,.05);padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+    <p style="font-family:var(--fm);font-size:clamp(.48rem,.6vw,.54rem);color:rgba(255,255,255,.18);letter-spacing:.05em;">© {new Date().getFullYear()} AXIS MEDIA AND WEB SERVICES · MOMBASA, KENYA</p>
+    <p style="font-family:var(--fm);font-size:clamp(.48rem,.6vw,.54rem);color:rgba(255,255,255,.18);letter-spacing:.05em;">Built with precision.</p>
+  </div>
+</footer>
 
-  <!-- Intersection Observer for scroll reveals -->
-  <script is:inline>
-    (function () {
-      const io = new IntersectionObserver(
-        (entries) => entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            io.unobserve(e.target);
-          }
-        }),
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-      );
-      document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+<script is:inline>
+// Logo Fibonacci spiral
+function drawLogo(id,s){
+  var c=document.getElementById(id);if(!c)return;
+  var x=c.getContext('2d'),cx=s/2,cy=s/2,PHI=1.618;
+  x.clearRect(0,0,s,s);
+  x.strokeStyle='#C9A84C';x.lineWidth=.85;
+  x.beginPath();
+  for(var a=0;a<Math.PI*4;a+=.06){
+    var r=1.4*Math.pow(PHI,a/Math.PI/2);
+    var px=cx+r*Math.cos(a-Math.PI/2),py=cy+r*Math.sin(a-Math.PI/2);
+    a===0?x.moveTo(px,py):x.lineTo(px,py);
+    if(r>s*.45)break;
+  }
+  x.stroke();
+  x.strokeStyle='rgba(201,168,76,.5)';x.lineWidth=.7;
+  x.beginPath();x.moveTo(cx,2);x.lineTo(s-2,s-2);x.lineTo(2,s-2);x.closePath();x.stroke();
+}
+drawLogo('logo-c',24);
+drawLogo('flogo-c',20);
 
-      // Nav scroll effect
-      const nav = document.getElementById('site-nav');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-          nav.style.background = 'rgba(10,10,11,0.94)';
-          nav.style.backdropFilter = 'blur(20px)';
-        } else {
-          nav.style.background = 'transparent';
-          nav.style.backdropFilter = 'none';
-        }
-      }, { passive: true });
-    })();
-  </script>
-
-  <!-- 404 Redirect Safety Net (loaded async) -->
-  <script is:inline>
-    // If this page was reached via a broken link, append ref param
-    if (document.referrer && performance && performance.navigation) {
-      // handled server-side via Cloudflare Worker; client fallback only
+// Fibonacci background spirals
+(function(){
+  var c=document.getElementById('fib-bg');if(!c)return;
+  var x=c.getContext('2d');
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;draw();}
+  function spiral(cx,cy,u,col,a){
+    x.strokeStyle=col;x.globalAlpha=a;x.lineWidth=.7;
+    var s=0,b=u,ox=cx,oy=cy;
+    var d=[[0,-1],[1,0],[0,1],[-1,0]];
+    for(var i=0;i<11;i++){
+      var r=b,dr=d[i%4];
+      var ncx=ox+dr[0]*r,ncy=oy+dr[1]*r;
+      x.beginPath();x.arc(ncx,ncy,r,i%4*Math.PI/2,(i%4+1)*Math.PI/2);x.stroke();
+      ox=ncx;oy=ncy;var tmp=b;b=s+b;s=tmp;
+      if(b>Math.max(c.width,c.height)*1.5)break;
     }
-  </script>
+    x.globalAlpha=1;
+  }
+  function draw(){
+    x.clearRect(0,0,c.width,c.height);
+    spiral(c.width*.12,c.height*.18,8,'#C9A84C',.45);
+    spiral(c.width*.88,c.height*.78,5,'#2D6B3F',.5);
+    spiral(c.width*.5,c.height*.45,3,'#C9A84C',.15);
+  }
+  window.addEventListener('resize',resize,{passive:true});
+  resize();
+})();
+
+// Mobile nav
+window.toggleMob=function(){
+  var h=document.getElementById('ham');
+  var m=document.getElementById('mob-menu');
+  var open=h.classList.toggle('open');
+  m.classList.toggle('open',open);
+  h.setAttribute('aria-expanded',String(open));
+};
+document.addEventListener('click',function(e){
+  var h=document.getElementById('ham');
+  var m=document.getElementById('mob-menu');
+  if(h&&m&&!h.contains(e.target)&&!m.contains(e.target)){
+    h.classList.remove('open');m.classList.remove('open');
+    h.setAttribute('aria-expanded','false');
+  }
+});
+
+// Nav scroll shadow
+window.addEventListener('scroll',function(){
+  var n=document.getElementById('main-nav');
+  if(n)n.style.background=window.scrollY>20?'rgba(6,14,8,.97)':'rgba(6,14,8,.94)';
+},{passive:true});
+
+// Scroll reveal with Fibonacci delays
+var FIB=[0,89,144,233,377,610];var ri=0;
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var delay=FIB[ri%6];
+      setTimeout(function(){e.target.classList.add('vis');},delay);
+      ri++;io.unobserve(e.target);
+    }
+  });
+},{threshold:.07,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+// Hero parallax at 1/phi ratio
+window.addEventListener('scroll',function(){
+  var hc=document.getElementById('hero-content');
+  var hcanvas=document.getElementById('hero-canvas');
+  if(hc)hc.style.transform='translateY('+(window.scrollY/1.618*.3)+'px)';
+  if(hcanvas)hcanvas.style.transform='translateY('+(window.scrollY*.1)+'px)';
+},{passive:true});
+
+// Footer responsive
+function rfg(){
+  var g=document.getElementById('fg');if(!g)return;
+  g.style.gridTemplateColumns=window.innerWidth<600?'1fr':window.innerWidth<900?'1fr 1fr':'1.1fr .8fr 1fr';
+}
+window.addEventListener('resize',rfg,{passive:true});rfg();
+
+// Fibonacci cursor trail — desktop only, pointer:fine
+if(window.matchMedia&&window.matchMedia('(pointer:fine)').matches&&
+   !(window.matchMedia('(prefers-reduced-motion:reduce)').matches)){
+  var PHI=1.618;
+  var sizes=[8,5,3,2,1.3,0.8];
+  var trails=sizes.map(function(s){
+    var d=document.createElement('div');
+    d.style.cssText='position:fixed;border-radius:50%;pointer-events:none;z-index:9000;transform:translate(-50%,-50%);width:'+(s*2)+'px;height:'+(s*2)+'px;background:rgba(201,168,76,'+Math.min(.3/s+.05,.25)+');transition:left '+(Math.round(s*60))+'ms ease,top '+(Math.round(s*60))+'ms ease;';
+    document.body.appendChild(d);return d;
+  });
+  var mx=0,my=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;},{passive:true});
+  (function animTrail(){
+    trails.forEach(function(t,i){
+      var a=i*Math.PI*2/PHI,r=i*3;
+      t.style.left=(mx+r*Math.cos(a))+'px';
+      t.style.top=(my+r*Math.sin(a))+'px';
+    });
+    requestAnimationFrame(animTrail);
+  })();
+}
+</script>
 </body>
 </html>
-
-<style>
-  @media (max-width: 768px) {
-    .footer-grid {
-      grid-template-columns: 1fr !important;
-    }
-  }
-</style>
