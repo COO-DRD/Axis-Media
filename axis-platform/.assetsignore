@@ -1,0 +1,8 @@
+node_modules/
+.venv/
+.git/
+*.py
+requirements.txt
+wrangler.jsonc
+package.json
+package-lock.json
