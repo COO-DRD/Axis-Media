@@ -1,0 +1,140 @@
+name: AXIS Infrastructure CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '22'
+  PYTHON_VERSION: '3.12'
+
+jobs:
+
+  # ── Frontend Build & Link Check ─────────────────────────────────────────
+  frontend:
+    name: Frontend Build & Pre-flight
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build (Astro)
+        run: npm run build
+        env:
+          PUBLIC_SUPABASE_URL:  ${{ secrets.PUBLIC_SUPABASE_URL }}
+          PUBLIC_SUPABASE_ANON: ${{ secrets.PUBLIC_SUPABASE_ANON }}
+
+      - name: Pre-flight Link Check
+        run: npm run check:links -- --dist=./dist --verbose
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          name: axis-dist
+          path: dist/
+          retention-days: 1
+
+  # ── Backend Tests ────────────────────────────────────────────────────────
+  backend:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt pytest pytest-asyncio httpx
+
+      - name: Run Tests
+        run: pytest tests/ -v --tb=short
+        env:
+          SUPABASE_URL:            ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY:    ${{ secrets.SUPABASE_SERVICE_KEY }}
+          RESEND_API_KEY:          ${{ secrets.RESEND_API_KEY }}
+          DARAJA_CONSUMER_KEY:     ${{ secrets.DARAJA_CONSUMER_KEY }}
+          DARAJA_CONSUMER_SECRET:  ${{ secrets.DARAJA_CONSUMER_SECRET }}
+          DARAJA_SHORTCODE:        ${{ secrets.DARAJA_SHORTCODE }}
+          DARAJA_PASSKEY:          ${{ secrets.DARAJA_PASSKEY }}
+          TELEGRAM_BOT_TOKEN:      ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CEO_CHAT_ID:    ${{ secrets.TELEGRAM_CEO_CHAT_ID }}
+          SECRET_KEY:              ${{ secrets.SECRET_KEY }}
+          DARAJA_ENV:              sandbox
+
+  # ── Deploy (main branch only) ────────────────────────────────────────────
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [frontend, backend]
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: axis-dist
+          path: dist/
+
+      # Deploy frontend to Cloudflare Pages
+      - name: Deploy Frontend → Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken:    ${{ secrets.CF_API_TOKEN }}
+          accountId:   ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: axis-media-platform
+          directory:   dist/
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Deploy Cloudflare Worker
+      - name: Deploy Edge Worker → Cloudflare
+        run: npx wrangler deploy scripts/cloudflare-worker.js --name axis-edge
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      # Deploy backend to Render (or Railway)
+      - name: Deploy Backend → Render
+        run: |
+          curl -s -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
+      # Post-deploy: run Supabase migrations
+      - name: Apply DB Migrations
+        run: |
+          npx supabase db push --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}

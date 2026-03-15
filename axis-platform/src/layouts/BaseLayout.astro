@@ -1,0 +1,250 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  schema?: Record<string, unknown>;
+  page?: string;
+}
+
+const {
+  title,
+  description = 'AXIS Media and Web Services — Sovereign Digital Infrastructure, Mombasa Kenya. System Architecture, M-Pesa Integration, Authority Content.',
+  schema,
+  page = '',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://axismediaws.com');
+---
+
+<!doctype html>
+<html lang="en" data-page={page}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0A0B" />
+
+  <title>{title} | AXIS Media & Web Services</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={canonicalURL} />
+  <meta property="og:title"       content={`${title} | AXIS Media`} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image"       content="https://axismediaws.com/og-card.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
+
+  <!-- SEO / Geo -->
+  <meta name="geo.region"   content="KE-MSA" />
+  <meta name="geo.placename" content="Mombasa, Kenya" />
+  <meta name="geo.position" content="-4.0435;39.6682" />
+  <meta name="ICBM"         content="-4.0435, 39.6682" />
+
+  <!-- Preloads -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Eco-Mode Detection (inline, zero-render-block) -->
+  <script is:inline>
+    (function () {
+      const mq = window.matchMedia;
+      const prefersReducedData =
+        (mq && mq('(prefers-reduced-data: reduce)').matches) ||
+        (navigator.connection && (
+          navigator.connection.saveData ||
+          ['slow-2g','2g'].includes(navigator.connection.effectiveType)
+        ));
+
+      const storedMode = localStorage.getItem('axis-eco');
+      const shouldEco  = storedMode === 'on' || (storedMode === null && prefersReducedData);
+
+      if (shouldEco) document.documentElement.classList.add('low-data');
+
+      window.__axisToggleEco = function () {
+        const isEco = document.documentElement.classList.toggle('low-data');
+        localStorage.setItem('axis-eco', isEco ? 'on' : 'off');
+        const btn = document.getElementById('eco-toggle');
+        if (btn) btn.textContent = isEco ? 'ECO ON' : 'ECO OFF';
+      };
+    })();
+  </script>
+
+  <!-- Dynamic JSON-LD -->
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      ...schema,
+    })} />
+  )}
+
+  <!-- Default Organization Schema -->
+  <script type="application/ld+json">{JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'AXIS Media and Web Services',
+    url: 'https://axismediaws.com',
+    logo: 'https://axismediaws.com/logo.svg',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Mombasa',
+      addressCountry: 'KE',
+    },
+    sameAs: ['https://twitter.com/axismediaws'],
+    description: 'Sovereign Digital Infrastructure for the Kenyan market — System Architecture, M-Pesa Integration, and Authority Content Systems.',
+  })}</script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50" id="site-nav">
+    <div class="section-container">
+      <nav class="flex items-center justify-between h-16">
+        <!-- Wordmark -->
+        <a href="/" class="flex items-center gap-3 group" aria-label="AXIS Home">
+          <div class="relative w-8 h-8">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+              <path d="M16 2L30 28H2L16 2Z" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+              <path d="M8 20H24" stroke="#C9A84C" stroke-width="1" opacity="0.5"/>
+              <circle cx="16" cy="16" r="3" fill="#C9A84C" opacity="0.7"/>
+            </svg>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.2em;color:rgba(255,255,255,0.9);">AXIS</span>
+        </a>
+
+        <!-- Links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/"          class="nav-link" aria-current={page === 'home'      ? 'page' : undefined}>Diagnostic</a>
+          <a href="/solutions" class="nav-link" aria-current={page === 'solutions' ? 'page' : undefined}>Methodology</a>
+          <a href="/archive"   class="nav-link" aria-current={page === 'archive'   ? 'page' : undefined}>Archive</a>
+          <a href="/status"    class="nav-link">System Status</a>
+        </div>
+
+        <!-- Right Controls -->
+        <div class="flex items-center gap-4">
+          <button
+            id="eco-toggle"
+            onclick="window.__axisToggleEco()"
+            style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.14em;padding:6px 12px;border:1px solid rgba(255,255,255,0.12);border-radius:4px;background:transparent;color:rgba(255,255,255,0.45);cursor:pointer;transition:all 0.15s ease;"
+            aria-label="Toggle eco mode"
+          >ECO OFF</button>
+          <a href="/initiate" class="btn-primary" style="padding:10px 20px;font-size:0.78rem;">
+            Initiate
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Nav Border -->
+    <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.2),transparent);"></div>
+  </header>
+
+  <!-- Page Content -->
+  <main style="padding-top:64px;">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer style="margin-top:120px;padding:60px 0 40px;border-top:1px solid var(--c-border);">
+    <div class="section-container">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;margin-bottom:48px;" class="footer-grid">
+        <div>
+          <p class="t-label" style="margin-bottom:16px;">AXIS Media & Web Services</p>
+          <p class="t-body" style="font-size:0.875rem;">Sovereign Digital Infrastructure.<br/>Mombasa · Nairobi · Kenya</p>
+          <div style="margin-top:20px;display:flex;align-items:center;gap:8px;">
+            <div class="status-dot"></div>
+            <span style="font-family:var(--font-mono);font-size:0.68rem;color:rgba(255,255,255,0.45);letter-spacing:0.1em;">ALL SYSTEMS OPERATIONAL</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="t-label" style="margin-bottom:16px;">Infrastructure Nodes</p>
+          <nav style="display:flex;flex-direction:column;gap:10px;">
+            <a href="/"          class="nav-link">Clinical Diagnostic</a>
+            <a href="/solutions" class="nav-link">Infrastructure Methodology</a>
+            <a href="/archive"   class="nav-link">Systems Archive</a>
+            <a href="/initiate"  class="nav-link">Vetting Intake</a>
+            <a href="/vault"     class="nav-link">Resource Vault</a>
+            <a href="/status"    class="nav-link">Infrastructure Monitor</a>
+          </nav>
+        </div>
+
+        <div>
+          <p class="t-label" style="margin-bottom:16px;">SEO Sovereignty Map</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            {['Digital Infrastructure Kenya','System Architecture Mombasa','M-Pesa API Integration','Web Services Nairobi','Authority Content Systems','CEO Automation Kenya','FastAPI Development KE','Supabase Architecture'].map(kw => (
+              <span style="font-family:var(--font-mono);font-size:0.62rem;padding:4px 10px;background:rgba(255,255,255,0.03);border:1px solid var(--c-border);border-radius:4px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">{kw}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <hr class="rule-subtle" style="margin-bottom:28px;" />
+
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+        <p style="font-family:var(--font-mono);font-size:0.68rem;color:rgba(255,255,255,0.3);letter-spacing:0.08em;">
+          © {new Date().getFullYear()} AXIS MEDIA AND WEB SERVICES. ALL SYSTEMS SOVEREIGN.
+        </p>
+        <div style="display:flex;gap:24px;">
+          <a href="/initiate" class="nav-link">Begin Infrastructure Audit</a>
+          <a href="/solutions" class="nav-link">Review Infrastructure Archive</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Dock (Mobile Primary CTAs) -->
+  <div class="floating-dock md:hidden" role="navigation" aria-label="Primary actions">
+    <a href="/initiate" class="btn-primary" style="padding:10px 16px;font-size:0.78rem;">Audit</a>
+    <a href="/#mpesa" class="btn-signal" style="padding:10px 16px;font-size:0.72rem;">M-Pesa</a>
+    <a href="/initiate#contact" class="btn-ghost" style="padding:10px 16px;font-size:0.78rem;">Contact</a>
+  </div>
+
+  <!-- Intersection Observer for scroll reveals -->
+  <script is:inline>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        }),
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+      // Nav scroll effect
+      const nav = document.getElementById('site-nav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          nav.style.background = 'rgba(10,10,11,0.94)';
+          nav.style.backdropFilter = 'blur(20px)';
+        } else {
+          nav.style.background = 'transparent';
+          nav.style.backdropFilter = 'none';
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- 404 Redirect Safety Net (loaded async) -->
+  <script is:inline>
+    // If this page was reached via a broken link, append ref param
+    if (document.referrer && performance && performance.navigation) {
+      // handled server-side via Cloudflare Worker; client fallback only
+    }
+  </script>
+</body>
+</html>
+
+<style>
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

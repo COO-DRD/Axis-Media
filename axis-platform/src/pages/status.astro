@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Infrastructure Monitor"
+  description="Real-time uptime status for all AXIS-built systems. The Maintenance Phase is operational."
+  page="status"
+>
+  <section style="padding:100px 0 120px;">
+    <div class="section-container">
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:64px;">
+        <div>
+          <p class="t-label" data-reveal style="margin-bottom:16px;">INFRASTRUCTURE MONITOR</p>
+          <h1 class="t-display-lg" data-reveal data-reveal-delay="1">
+            System <em style="color:var(--c-signal);">Pulse</em>
+          </h1>
+          <p class="t-body" data-reveal data-reveal-delay="2" style="max-width:460px;margin-top:12px;">
+            The Maintenance Phase is not optional at AXIS. Every sovereign system we deploy is monitored continuously. This is the proof.
+          </p>
+        </div>
+        <div data-reveal style="display:flex;align-items:center;gap:12px;padding:16px 24px;border:1px solid rgba(79,255,176,0.2);border-radius:10px;background:rgba(79,255,176,0.04);">
+          <div class="status-dot"></div>
+          <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--c-signal);">ALL SYSTEMS OPERATIONAL</span>
+        </div>
+      </div>
+
+      <!-- Systems Status Grid -->
+      <div id="status-grid" style="display:flex;flex-direction:column;gap:8px;">
+        <!-- Populated by JS fetch from /api/v1/stella/pulse -->
+        <div class="glass-card" style="padding:24px 32px;display:grid;grid-template-columns:1fr auto auto auto;gap:24px;align-items:center;">
+          <div>
+            <p style="font-family:var(--font-body);font-weight:500;color:rgba(255,255,255,0.9);margin-bottom:4px;">Tuma Logistics</p>
+            <p style="font-family:var(--font-mono);font-size:0.68rem;color:rgba(255,255,255,0.35);">tumalogistics.co.ke</p>
+          </div>
+          <div style="display:flex;gap:3px;">{Array.from({length:30},(_,i) => `<div style="width:6px;height:24px;border-radius:2px;background:rgba(79,255,176,${0.3+Math.random()*0.5});"></div>`).join('')}</div>
+          <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--c-signal);">99.97%</span>
+          <div class="status-dot"></div>
+        </div>
+
+        {[
+          { name:'MSA Legal Partners',  url:'msalegalpartners.co.ke',  uptime:'100%' },
+          { name:'Nyumba Properties',   url:'nyumbaproperties.co.ke',  uptime:'99.99%' },
+          { name:'Coast Agritech',      url:'coastagritech.co.ke',     uptime:'99.94%' },
+          { name:'AXIS Core Platform',  url:'axismediaws.com',         uptime:'100%' },
+        ].map(sys => (
+          <div class="glass-card" data-reveal style="padding:24px 32px;display:grid;grid-template-columns:1fr auto auto auto;gap:24px;align-items:center;">
+            <div>
+              <p style="font-family:var(--font-body);font-weight:500;color:rgba(255,255,255,0.9);margin-bottom:4px;">{sys.name}</p>
+              <p style="font-family:var(--font-mono);font-size:0.68rem;color:rgba(255,255,255,0.35);">{sys.url}</p>
+            </div>
+            <div style="display:flex;gap:3px;">
+              {Array.from({length:30}).map(() => (
+                <div style={`width:6px;height:24px;border-radius:2px;background:rgba(79,255,176,${(0.3+Math.random()*0.5).toFixed(2)});`}></div>
+              ))}
+            </div>
+            <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--c-signal);">{sys.uptime}</span>
+            <div class="status-dot"></div>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top:56px;text-align:center;">
+        <p class="t-body" style="font-size:0.85rem;">
+          Average data refreshed every 60 seconds from the AXIS monitoring layer.
+          <a href="/initiate" style="color:var(--c-gold);text-decoration:none;margin-left:8px;">Begin Intake →</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

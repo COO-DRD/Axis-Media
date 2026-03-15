@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// In production: fetch from Supabase portfolio_systems table (only published records)
+// const { data: systems } = await supabase.from('portfolio_systems').select('*').eq('status','published');
+
+const systems = [
+  {
+    id: 'tuma-logistics',
+    title: 'Tuma Logistics',
+    gap: 'Manual freight booking via WhatsApp — zero digital paper trail, zero lead capture.',
+    narrative: 'We reframed the company from "delivery service" to "Supply Chain Architecture." The vocabulary shift alone doubled inbound inquiry quality.',
+    stack: ['Astro 5', 'FastAPI', 'Daraja API', 'Supabase', 'Cloudflare Workers'],
+    vocabulary: ['Supply Chain Architecture', 'Transit Intelligence', 'Freight Sovereignty'],
+    live_url: 'https://tumalogistics.co.ke',
+    category: 'Logistics',
+    year: '2024',
+    outcome: 'KES 840K automated in first 90 days',
+  },
+  {
+    id: 'msa-legal',
+    title: 'MSA Legal Partners',
+    gap: 'A static 2018 website with a generic contact form. High authority, zero digital presence multiplier.',
+    narrative: 'Repositioned from "law firm" to "Legal Infrastructure for Kenyan Founders." Built a full intake vetting system that qualifies leads before any human contact.',
+    stack: ['Next.js', 'Resend', 'Supabase', 'Calendly API'],
+    vocabulary: ['Legal Infrastructure', 'Founder Protection Systems', 'Contractual Architecture'],
+    live_url: 'https://msalegalpartners.co.ke',
+    category: 'Professional Services',
+    year: '2024',
+    outcome: '3.1× increase in qualified intake volume',
+  },
+  {
+    id: 'nyumba-properties',
+    title: 'Nyumba Properties',
+    gap: 'Property listings on a competitor aggregator. No owned audience, no M-Pesa booking rails, no data sovereignty.',
+    narrative: 'Built an owned platform with Daraja-powered reservation deposits, GeoJSON property mapping, and automated WhatsApp notifications. The aggregator dependency was eliminated.',
+    stack: ['Astro 5', 'Daraja API', 'Mapbox GL', 'Supabase', 'Twilio'],
+    vocabulary: ['Property Reservation Architecture', 'Digital Land Registry', 'Tenant Acquisition Systems'],
+    live_url: 'https://nyumbaproperties.co.ke',
+    category: 'Real Estate',
+    year: '2023',
+    outcome: 'KES 2.1M in deposits processed in first quarter',
+  },
+  {
+    id: 'coast-agritech',
+    title: 'Coast Agritech',
+    gap: 'Farmer data scattered across Excel sheets. No CRM, no payment system, no content presence in the agricultural discourse.',
+    narrative: 'Installed a sovereign farmer-data platform with M-Pesa bulk disbursement, yield tracking, and an authority content system positioning the founders as Kenya\'s leading agritech voices.',
+    stack: ['React', 'FastAPI', 'M-Pesa B2C', 'PostgreSQL', 'CRON Workers'],
+    vocabulary: ['Farmer Intelligence Platform', 'Agricultural Data Sovereignty', 'Yield Architecture'],
+    live_url: 'https://coastagritech.co.ke',
+    category: 'Agritech',
+    year: '2024',
+    outcome: '1,240 farmers onboarded, KES 4.8M disbursed',
+  },
+];
+
+const archiveSchema = {
+  '@type': 'ItemList',
+  name: 'AXIS Systems Archive',
+  description: 'Portfolio of sovereign digital infrastructure systems engineered for Kenyan enterprises.',
+  itemListElement: systems.map((s, i) => ({
+    '@type': 'SoftwareApplication',
+    position: i + 1,
+    name: s.title,
+    url: s.live_url,
+    applicationCategory: s.category,
+    description: s.gap,
+  })),
+};
+---
+
+<BaseLayout
+  title="Systems Archive"
+  description="The AXIS Systems Archive — Digital infrastructure deployments for Kenyan enterprises. Full anatomy: the gap, the narrative, the stack, and the live system."
+  schema={archiveSchema}
+  page="archive"
+>
+
+  <!-- Hero -->
+  <section style="padding:100px 0 80px;position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.3),transparent);"></div>
+    <div class="section-container">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;">
+        <div>
+          <p class="t-label" data-reveal style="margin-bottom:16px;">SYSTEMS ARCHIVE</p>
+          <h1 class="t-display-xl" data-reveal data-reveal-delay="1">
+            Digital Twins,<br/><em style="color:var(--c-gold);">In Production.</em>
+          </h1>
+          <p class="t-body" data-reveal data-reveal-delay="2" style="max-width:500px;margin-top:16px;font-size:1.05rem;">
+            Every system listed here is live and operational. No case studies. No mockups. Infrastructure with a pulse.
+          </p>
+        </div>
+        <div data-reveal style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+          <span style="font-family:var(--font-display);font-size:4rem;font-weight:300;color:rgba(201,168,76,0.7);line-height:1;">{systems.length}</span>
+          <span class="t-label">Active Systems</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section style="padding:0 0 40px;border-bottom:1px solid var(--c-border);">
+    <div class="section-container">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;" id="filter-bar">
+        {['All', ...new Set(systems.map(s => s.category))].map(cat => (
+          <button
+            class="filter-btn"
+            data-filter={cat}
+            style={`font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;padding:8px 16px;border-radius:6px;border:1px solid;cursor:pointer;transition:all 0.2s;${cat==='All'?'background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.3);color:var(--c-gold);':'background:transparent;border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.45);'}`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Systems Grid -->
+  <section style="padding:64px 0 120px;">
+    <div class="section-container">
+      <div style="display:flex;flex-direction:column;gap:24px;" id="systems-grid">
+        {systems.map((system, idx) => (
+          <article
+            class="glass-card system-card"
+            data-category={system.category}
+            data-reveal
+            data-reveal-delay={String(idx % 3)}
+            style="padding:0;overflow:hidden;"
+            itemscope
+            itemtype="https://schema.org/SoftwareApplication"
+          >
+            <div style="display:grid;grid-template-columns:1fr 320px;gap:0;min-height:240px;" class="system-grid">
+
+              <!-- Main Content -->
+              <div style="padding:40px 48px;border-right:1px solid var(--c-border);">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                  <span style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:4px 10px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:4px;color:var(--c-gold);">{system.category}</span>
+                  <span style="font-family:var(--font-mono);font-size:0.65rem;color:rgba(255,255,255,0.3);">{system.year}</span>
+                  <div class="status-dot" style="margin-left:auto;"></div>
+                  <span style="font-family:var(--font-mono);font-size:0.65rem;color:rgba(79,255,176,0.6);">LIVE</span>
+                </div>
+
+                <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:400;color:rgba(255,255,255,0.97);margin-bottom:16px;" itemprop="name">{system.title}</h2>
+
+                <div style="margin-bottom:20px;">
+                  <p style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(224,92,58,0.8);margin-bottom:6px;">THE GAP</p>
+                  <p class="t-body" style="font-size:0.9rem;" itemprop="description">{system.gap}</p>
+                </div>
+
+                <div>
+                  <p style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(201,168,76,0.7);margin-bottom:6px;">THE NARRATIVE</p>
+                  <p class="t-body" style="font-size:0.9rem;">{system.narrative}</p>
+                </div>
+              </div>
+
+              <!-- Side Panel -->
+              <div style="padding:40px 32px;background:rgba(255,255,255,0.01);display:flex;flex-direction:column;justify-content:space-between;gap:28px;">
+
+                <!-- Vocabulary -->
+                <div>
+                  <p style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;">Installed Vocabulary</p>
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    {system.vocabulary.map(v => (
+                      <span style="font-family:var(--font-body);font-size:0.85rem;color:rgba(255,255,255,0.7);padding:6px 12px;background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.12);border-radius:6px;">{v}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <!-- Stack -->
+                <div>
+                  <p style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Infrastructure Stack</p>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                    {system.stack.map(t => (
+                      <span style="font-family:var(--font-mono);font-size:0.68rem;padding:3px 10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:4px;color:rgba(255,255,255,0.5);">{t}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <!-- Outcome + CTA -->
+                <div>
+                  <div style="padding:16px;background:rgba(79,255,176,0.04);border:1px solid rgba(79,255,176,0.12);border-radius:8px;margin-bottom:16px;">
+                    <p style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:rgba(79,255,176,0.6);margin-bottom:4px;text-transform:uppercase;">Outcome</p>
+                    <p style="font-family:var(--font-body);font-size:0.85rem;font-weight:500;color:var(--c-signal);">{system.outcome}</p>
+                  </div>
+                  <a
+                    href={system.live_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-ghost"
+                    style="width:100%;justify-content:center;font-size:0.78rem;"
+                    itemprop="url"
+                  >
+                    Audit Live System
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Individual JSON-LD per system -->
+            <script type="application/ld+json" set:html={JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'SoftwareApplication',
+              name: system.title,
+              url: system.live_url,
+              applicationCategory: system.category,
+              description: `${system.gap} ${system.narrative}`,
+              creator: {
+                '@type': 'Organization',
+                name: 'AXIS Media and Web Services',
+                url: 'https://axismediaws.com',
+              },
+            })} />
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Rail -->
+  <section style="padding:0 0 100px;">
+    <div class="section-container">
+      <div class="glass-card" data-reveal style="padding:48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(79,255,176,0.04) 0%,rgba(20,20,23,0.9) 100%);">
+        <div>
+          <p class="t-label" style="margin-bottom:8px;">READY TO BE ARCHIVED</p>
+          <h2 style="font-family:var(--font-display);font-size:2rem;color:rgba(255,255,255,0.97);">Your System Belongs Here.</h2>
+          <p class="t-body" style="margin-top:8px;max-width:440px;">
+            Begin the infrastructure audit. If the score warrants it, AXIS builds. The Archive grows one sovereign system at a time.
+          </p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="/initiate" class="btn-primary">Begin Intake Vetting</a>
+          <a href="/solutions" class="btn-ghost">Review Infrastructure Methodology</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  @media (max-width: 900px) {
+    .system-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards      = document.querySelectorAll('.system-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      filterBtns.forEach(b => {
+        (b as HTMLElement).style.background   = 'transparent';
+        (b as HTMLElement).style.borderColor  = 'rgba(255,255,255,0.1)';
+        (b as HTMLElement).style.color        = 'rgba(255,255,255,0.45)';
+      });
+      (btn as HTMLElement).style.background  = 'rgba(201,168,76,0.1)';
+      (btn as HTMLElement).style.borderColor = 'rgba(201,168,76,0.3)';
+      (btn as HTMLElement).style.color       = 'var(--c-gold)';
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        (card as HTMLElement).style.display = (filter === 'All' || cat === filter) ? 'block' : 'none';
+      });
+    });
+  });
+</script>
