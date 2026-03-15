@@ -103,7 +103,7 @@ function submitA(){
   if(!n||!e){alert('Please enter your name and email.');return;}
   var btn=document.getElementById('anxt');
   btn.textContent='Sending…';btn.disabled=true;
-  fetch('/api/v1/audit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,phone:ph,source:'assessment'})}).catch(function(){});
+  fetch('https://axismediaweb.up.railway.app/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,phone:ph,source:'assessment'})}).catch(function(){});
   setTimeout(function(){
     for(var i=1;i<=4;i++){var el=document.getElementById('as'+i);if(el)el.style.display='none';}
     document.getElementById('aprog').style.display='none';
