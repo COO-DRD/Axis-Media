@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     # Safaricom Daraja
     DARAJA_CONSUMER_KEY: str = ""
     DARAJA_CONSUMER_SECRET: str = ""
-    DARAJA_SHORTCODE: str = ""
+    DARAJA_SHORTCODE: str = "174379"
     DARAJA_PASSKEY: str = ""
     DARAJA_CALLBACK_URL: str = "https://axismediaws.com/api/v1/daraja/callback"
     DARAJA_ENV: str = "production"
