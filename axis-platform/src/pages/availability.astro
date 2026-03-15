@@ -1,0 +1,326 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Check Availability"
+  description="AXIS takes a maximum of 2 clients per month. Check current slot availability and book your discovery call or join the waitlist."
+  page="availability"
+>
+
+<section class="sec" style="padding-top:clamp(56px,10vw,80px);min-height:90vh;">
+
+  <!-- Header -->
+  <div style="max-width:640px;margin:0 auto;text-align:center;margin-bottom:clamp(32px,5vw,48px);">
+    <div class="pill rv" style="margin:0 auto 14px;width:fit-content;">
+      <div class="dot" id="avail-dot"></div>
+      <span id="avail-pill-text" style="font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);">Checking availability…</span>
+    </div>
+    <p class="lbl rv" style="margin-bottom:8px;transition-delay:.04s;">Client Slots</p>
+    <h1 class="sh rv" style="font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:14px;transition-delay:.08s;">
+      Two Clients.<br/><em style="color:var(--gold);font-style:italic;">One Hundred Percent Focus.</em>
+    </h1>
+    <p class="body-t rv" style="transition-delay:.16s;max-width:480px;margin:0 auto;">I operate on a Precision Sprint model — maximum 2 clients per month so every project gets sovereign attention. Check what's open below.</p>
+  </div>
+
+  <!-- Slot status cards -->
+  <div style="max-width:640px;margin:0 auto;">
+
+    <!-- Live slot display -->
+    <div id="slot-loading" style="text-align:center;padding:32px;">
+      <div style="width:32px;height:32px;border-radius:50%;border:2px solid var(--gb);border-top-color:var(--gold);animation:spin .8s linear infinite;margin:0 auto 12px;"></div>
+      <p style="font-family:var(--fm);font-size:.6rem;color:var(--t3);letter-spacing:.08em;">CHECKING LIVE AVAILABILITY</p>
+    </div>
+
+    <div id="slot-display" style="display:none;">
+
+      <!-- Month + slot visual -->
+      <div class="gc-dark rv" style="padding:clamp(22px,4vw,32px);margin-bottom:14px;text-align:center;">
+        <p class="lbl" style="margin-bottom:6px;" id="month-label">This Month</p>
+        <div style="display:flex;justify-content:center;gap:12px;margin-bottom:16px;" id="slot-circles"></div>
+        <div id="slot-message" style="font-family:var(--fd);font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:300;color:var(--t1);margin-bottom:6px;"></div>
+        <div id="slot-sub" style="font-family:var(--fm);font-size:.6rem;color:var(--t3);"></div>
+      </div>
+
+      <!-- Book form — shown when slots open -->
+      <div id="book-section" style="display:none;">
+        <div class="gc" style="padding:clamp(20px,4vw,32px);margin-bottom:14px;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:var(--r) var(--r) 0 0;pointer-events:none;"></div>
+          <p class="lbl" style="margin-bottom:6px;">Book a Discovery Call</p>
+          <p style="font-size:clamp(.82rem,1.1vw,.9rem);font-weight:300;color:var(--t2);line-height:1.68;margin-bottom:20px;">30 minutes. I'll review your business before we speak, ask the right questions, and give you a clear picture of what needs building and what it costs. No pitch. No pressure.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;" id="book-grid">
+            <input class="inp" id="book-name"    type="text"   placeholder="Your full name"/>
+            <input class="inp" id="book-email"   type="email"  placeholder="Email address"/>
+            <input class="inp" id="book-phone"   type="tel"    placeholder="WhatsApp number"/>
+            <input class="inp" id="book-biz"     type="text"   placeholder="Business name"/>
+          </div>
+          <div style="margin-bottom:10px;">
+            <p style="font-family:var(--fm);font-size:.56rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">Preferred Call Time</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;" id="time-slots">
+              <div class="time-opt" data-val="weekday-morning">Weekday Morning<br/><span style="font-size:.56rem;color:var(--t3);">8–11am EAT</span></div>
+              <div class="time-opt" data-val="weekday-afternoon">Weekday Afternoon<br/><span style="font-size:.56rem;color:var(--t3);">2–5pm EAT</span></div>
+              <div class="time-opt" data-val="weekend">Weekend<br/><span style="font-size:.56rem;color:var(--t3);">Flexible</span></div>
+            </div>
+          </div>
+          <textarea class="inp" id="book-note" placeholder="Tell me about your business in one sentence (optional)" style="resize:none;height:72px;margin-bottom:14px;"></textarea>
+          <button class="btn-g" id="book-btn" onclick="submitBooking()" style="width:100%;justify-content:center;font-size:.84rem;padding:13px;">Reserve My Slot →</button>
+          <p style="font-family:var(--fm);font-size:.52rem;color:var(--t3);text-align:center;margin-top:8px;">You'll hear back within 2 hours to confirm the time. Slot is reserved on confirmation.</p>
+        </div>
+      </div>
+
+      <!-- Waitlist form — shown when full -->
+      <div id="waitlist-section" style="display:none;">
+        <div class="gc" style="padding:clamp(20px,4vw,32px);margin-bottom:14px;border-color:rgba(79,255,176,.15);">
+          <p class="lbl" style="margin-bottom:6px;color:var(--sig);">Join the Waitlist</p>
+          <p style="font-size:clamp(.82rem,1.1vw,.9rem);font-weight:300;color:var(--t2);line-height:1.68;margin-bottom:20px;">Both slots are taken this month — which means the work is serious. Drop your details and you'll be first contact when next month opens. Waitlist clients get priority and a complimentary diagnostic pre-call.</p>
+          <input class="inp" id="wait-name"  type="text"  placeholder="Your full name"   style="margin-bottom:10px;"/>
+          <input class="inp" id="wait-email" type="email" placeholder="Email address"    style="margin-bottom:10px;"/>
+          <input class="inp" id="wait-phone" type="tel"   placeholder="WhatsApp number"  style="margin-bottom:10px;"/>
+          <input class="inp" id="wait-biz"   type="text"  placeholder="Business name"    style="margin-bottom:14px;"/>
+          <button class="btn-g" id="wait-btn" onclick="submitWaitlist()" style="width:100%;justify-content:center;font-size:.84rem;padding:13px;background:var(--g5);box-shadow:none;">Join Waitlist →</button>
+          <p style="font-family:var(--fm);font-size:.52rem;color:var(--t3);text-align:center;margin-top:8px;">You'll be notified the moment next month's slots open — usually the last week of the current month.</p>
+        </div>
+      </div>
+
+      <!-- Success states -->
+      <div id="book-success" style="display:none;text-align:center;padding:clamp(24px,4vw,40px);">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--gd2);border:1px solid var(--gbh);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <p style="font-family:var(--fd);font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:var(--t1);margin-bottom:8px;">Slot Request Received.</p>
+        <p class="body-t" style="max-width:360px;margin:0 auto 8px;">I'll confirm your discovery call time within 2 hours. Check your WhatsApp and email.</p>
+        <p style="font-family:var(--fm);font-size:.58rem;color:var(--gold);margin-bottom:24px;">Your slot is held pending confirmation.</p>
+        <a href="/assessment" class="btn-o" style="font-size:.8rem;">Run Infrastructure Diagnostic While You Wait →</a>
+      </div>
+
+      <div id="wait-success" style="display:none;text-align:center;padding:clamp(24px,4vw,40px);">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--sd);border:1px solid var(--sb);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#4FFFB0" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <p style="font-family:var(--fd);font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:var(--t1);margin-bottom:8px;">You're on the List.</p>
+        <p class="body-t" style="max-width:360px;margin:0 auto 8px;">You'll be first to know when next month's slots open. Waitlist clients get priority access and a complimentary pre-call diagnostic.</p>
+        <a href="/assessment" class="btn-o" style="font-size:.8rem;margin-top:20px;">Run Your Free Diagnostic Now →</a>
+      </div>
+
+      <!-- Next month preview -->
+      <div id="next-month-section" style="display:none;">
+        <div class="gc" style="padding:clamp(16px,3vw,22px);text-align:center;">
+          <p class="lbl" style="margin-bottom:4px;font-size:.5rem;">Next Month</p>
+          <div style="display:flex;justify-content:center;gap:10px;margin:8px 0;" id="next-slot-circles"></div>
+          <p id="next-month-label" style="font-family:var(--fm);font-size:.6rem;color:var(--t3);"></p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- What happens section -->
+    <div style="margin-top:clamp(32px,5vw,48px);">
+      <p class="lbl rv" style="margin-bottom:16px;">What Happens Next</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:10px;">
+        {[
+          {n:'01',t:'You Apply',d:'Fill the form above. Takes 2 minutes.'},
+          {n:'02',t:'I Confirm',d:'Within 2 hours — WhatsApp + email with your call time.'},
+          {n:'03',t:'Discovery Call',d:'30 minutes. I review your business beforehand so we go deep fast.'},
+          {n:'04',t:'Proposal',d:'Within 24 hours — clear scope, price, and timeline. No vague quotes.'},
+        ].map(s=>(
+          <div class="gc rv" style="padding:clamp(14px,2.5vw,20px);">
+            <div style="font-family:var(--fm);font-size:.52rem;color:var(--gold);letter-spacing:.12em;margin-bottom:6px;">{s.n}</div>
+            <div style="font-family:var(--fd);font-size:clamp(1rem,1.5vw,1.1rem);font-weight:300;color:var(--t1);margin-bottom:4px;">{s.t}</div>
+            <p style="font-size:clamp(.76rem,1vw,.82rem);font-weight:300;color:var(--t3);line-height:1.6;">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Not ready CTA -->
+    <div style="margin-top:clamp(24px,4vw,36px);padding:clamp(16px,3vw,24px);background:rgba(255,255,255,.02);border:0.5px solid rgba(255,255,255,.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+      <div>
+        <p style="font-size:clamp(.84rem,1.1vw,.92rem);font-weight:300;color:var(--t2);">Not ready to book yet?</p>
+        <p style="font-family:var(--fm);font-size:.56rem;color:var(--t3);">Run the free diagnostic first — it takes 3 minutes and shows you exactly what to build.</p>
+      </div>
+      <a href="/assessment" class="btn-o" style="flex-shrink:0;">Run Free Diagnostic →</a>
+    </div>
+
+  </div>
+</section>
+
+</BaseLayout>
+
+<style>
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .time-opt{
+    padding:9px 10px;background:rgba(255,255,255,.02);border:0.5px solid rgba(255,255,255,.07);
+    border-radius:8px;cursor:pointer;font-size:clamp(.78rem,1vw,.84rem);color:var(--t2);
+    text-align:center;line-height:1.4;transition:all .15s;
+  }
+  .time-opt:hover{border-color:rgba(201,168,76,.25);background:rgba(201,168,76,.03);}
+  .time-opt.sel{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.06);color:var(--t1);}
+  .slot-circle{
+    width:clamp(52px,8vw,72px);height:clamp(52px,8vw,72px);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;
+    font-family:var(--fm);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;
+    border:1.5px solid;transition:all .3s;
+  }
+  .slot-open{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.35);color:var(--gold);}
+  .slot-taken{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:var(--t3);}
+  @media(max-width:500px){#book-grid{grid-template-columns:1fr !important;}}
+</style>
+
+<script is:inline>
+var RAILWAY_URL = 'https://axismediaweb.up.railway.app/';
+var selectedTime = '';
+
+// Time slot selection
+document.querySelectorAll('.time-opt').forEach(function(el){
+  el.addEventListener('click', function(){
+    document.querySelectorAll('.time-opt').forEach(function(e){e.classList.remove('sel');});
+    el.classList.add('sel');
+    selectedTime = el.dataset.val;
+  });
+});
+
+// Month name helper
+function monthName(offset){
+  var d = new Date();
+  d.setMonth(d.getMonth() + (offset||0));
+  return d.toLocaleString('default',{month:'long',year:'numeric'});
+}
+
+// Draw slot circles
+function drawCircles(containerId, total, taken){
+  var c = document.getElementById(containerId);
+  if(!c) return;
+  c.innerHTML = '';
+  for(var i = 0; i < total; i++){
+    var div = document.createElement('div');
+    div.className = 'slot-circle ' + (i < taken ? 'slot-taken' : 'slot-open');
+    div.innerHTML = i < taken
+      ? '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="rgba(255,255,255,.25)" stroke-width="1.5" stroke-linecap="round"/></svg><span>Taken</span>'
+      : '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="4" stroke="#C9A84C" stroke-width="1.2"/></svg><span>Open</span>';
+    c.appendChild(div);
+  }
+}
+
+// Load availability from backend
+async function loadAvailability(){
+  try {
+    var res = await fetch(RAILWAY_URL + '/api/v1/availability');
+    var data = await res.json();
+    renderSlots(data);
+  } catch(e) {
+    // Fallback: show 1 slot open if backend unreachable
+    renderSlots({ slots_total:2, slots_taken:1, next_slots_total:2, next_slots_taken:0 });
+  }
+}
+
+function renderSlots(data){
+  var total  = data.slots_total  || 2;
+  var taken  = data.slots_taken  || 0;
+  var open   = total - taken;
+  var nTotal = data.next_slots_total || 2;
+  var nTaken = data.next_slots_taken || 0;
+  var nOpen  = nTotal - nTaken;
+
+  document.getElementById('slot-loading').style.display = 'none';
+  document.getElementById('slot-display').style.display = 'block';
+
+  // Month label
+  document.getElementById('month-label').textContent = monthName(0);
+
+  // Draw circles
+  drawCircles('slot-circles', total, taken);
+
+  // Message
+  var msg = document.getElementById('slot-message');
+  var sub = document.getElementById('slot-sub');
+  var dot = document.getElementById('avail-dot');
+  var pill = document.getElementById('avail-pill-text');
+
+  if(open > 0){
+    msg.innerHTML = open + ' Slot' + (open>1?'s':'') + ' Available This Month';
+    msg.style.color = 'var(--t1)';
+    sub.textContent = open === total ? 'Both slots are open — apply now' : (open + ' of ' + total + ' slots remaining this month');
+    dot.style.background = 'var(--sig)';
+    dot.style.boxShadow = '0 0 8px rgba(79,255,176,.6)';
+    pill.textContent = open + ' slot' + (open>1?'s':'') + ' open · ' + monthName(0);
+    pill.style.color = 'rgba(79,255,176,.8)';
+    document.getElementById('book-section').style.display = 'block';
+  } else {
+    msg.innerHTML = 'Fully Booked for ' + monthName(0);
+    msg.style.color = 'var(--t3)';
+    sub.textContent = 'Both client slots are committed — join the waitlist for ' + monthName(1);
+    dot.style.background = 'rgba(232,85,85,.8)';
+    dot.style.boxShadow = '0 0 8px rgba(232,85,85,.4)';
+    pill.textContent = 'Fully booked · Waitlist open';
+    pill.style.color = 'rgba(232,85,85,.8)';
+    document.getElementById('waitlist-section').style.display = 'block';
+  }
+
+  // Next month preview
+  if(open === 0 || nOpen > 0){
+    var ns = document.getElementById('next-month-section');
+    ns.style.display = 'block';
+    drawCircles('next-slot-circles', nTotal, nTaken);
+    document.getElementById('next-month-label').textContent =
+      monthName(1) + ' — ' + nOpen + ' slot' + (nOpen!==1?'s':'') + ' available';
+  }
+}
+
+// Submit booking
+window.submitBooking = function(){
+  var name  = document.getElementById('book-name').value.trim();
+  var email = document.getElementById('book-email').value.trim();
+  var phone = document.getElementById('book-phone').value.trim();
+  var biz   = document.getElementById('book-biz').value.trim();
+  var note  = document.getElementById('book-note').value.trim();
+  if(!name || !email || !phone){
+    alert('Please fill in your name, email, and WhatsApp number.');
+    return;
+  }
+  var btn = document.getElementById('book-btn');
+  btn.textContent = 'Reserving…';
+  btn.disabled = true;
+  fetch(RAILWAY_URL + '/api/v1/availability/book', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      name:name, email:email, phone:phone,
+      business:biz, preferred_time:selectedTime,
+      note:note, type:'booking'
+    })
+  }).catch(function(){});
+  setTimeout(function(){
+    document.getElementById('book-section').style.display = 'none';
+    document.getElementById('book-success').style.display = 'block';
+  }, 700);
+};
+
+// Submit waitlist
+window.submitWaitlist = function(){
+  var name  = document.getElementById('wait-name').value.trim();
+  var email = document.getElementById('wait-email').value.trim();
+  var phone = document.getElementById('wait-phone').value.trim();
+  var biz   = document.getElementById('wait-biz').value.trim();
+  if(!name || !email){
+    alert('Please fill in your name and email.');
+    return;
+  }
+  var btn = document.getElementById('wait-btn');
+  btn.textContent = 'Joining…';
+  btn.disabled = true;
+  fetch(RAILWAY_URL + '/api/v1/availability/waitlist', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      name:name, email:email, phone:phone,
+      business:biz, type:'waitlist'
+    })
+  }).catch(function(){});
+  setTimeout(function(){
+    document.getElementById('waitlist-section').style.display = 'none';
+    document.getElementById('wait-success').style.display = 'block';
+  }, 700);
+};
+
+loadAvailability();
+</script>

@@ -11,7 +11,7 @@ import logging
 
 from core.config import settings
 from core.database import init_db
-from routes import audit, daraja, stella, vault
+from routes import audit, daraja, stella, vault, availability
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("axis")
@@ -51,10 +51,11 @@ app.add_middleware(
 )
 
 # ── Routers ────────────────────────────────────────────────────────────────
-app.include_router(audit.router,   prefix="/api/v1/audit",  tags=["Audit"])
-app.include_router(daraja.router,  prefix="/api/v1/daraja", tags=["M-Pesa Daraja"])
-app.include_router(stella.router,  prefix="/api/v1/stella", tags=["Stella Engine"])
-app.include_router(vault.router,   prefix="/api/v1/vault",  tags=["Vault"])
+app.include_router(audit.router,        prefix="/api/v1/audit",        tags=["Audit"])
+app.include_router(daraja.router,       prefix="/api/v1/daraja",       tags=["M-Pesa Daraja"])
+app.include_router(stella.router,       prefix="/api/v1/stella",       tags=["Stella Engine"])
+app.include_router(vault.router,        prefix="/api/v1/vault",        tags=["Vault"])
+app.include_router(availability.router, prefix="/api/v1/availability", tags=["Availability"])
 
 # ── Health ─────────────────────────────────────────────────────────────────
 @app.get("/api/v1/health", tags=["System"])
