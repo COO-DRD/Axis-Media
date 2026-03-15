@@ -1,0 +1,424 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const homeSchema = {
+  '@type': 'WebSite',
+  name: 'AXIS Media and Web Services',
+  url: 'https://axismediaws.com',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://axismediaws.com/archive?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const metrics = [
+  { value: '47',    label: 'Systems Under Management',       suffix: '' },
+  { value: '98ms',  label: 'Average API Response Latency',   suffix: '' },
+  { value: '3.2M',  label: 'KES Automated via M-Pesa',       suffix: '+' },
+  { value: '100%',  label: 'Infrastructure Uptime This Year', suffix: '' },
+];
+
+const auditSteps = [
+  {
+    id: 1,
+    label: 'CURRENT STATE',
+    question: 'What is your primary revenue-generating activity?',
+    type: 'radio',
+    options: ['Consulting / Professional Services', 'E-Commerce / Products', 'Media / Content', 'SaaS / Technology'],
+  },
+  {
+    id: 2,
+    label: 'THE GAP',
+    question: 'Where does your operation lose the most momentum?',
+    type: 'checkbox',
+    options: ['Manual lead follow-up', 'Fragmented payment collection', 'No content publishing system', 'Slow or absent web presence'],
+  },
+  {
+    id: 3,
+    label: 'SCALE',
+    question: 'What is your current monthly revenue range?',
+    type: 'radio',
+    options: ['Under KES 100K', 'KES 100K – 500K', 'KES 500K – 2M', 'KES 2M+'],
+  },
+  {
+    id: 4,
+    label: 'COMMITMENT',
+    question: 'How would you describe your relationship with technology?',
+    type: 'radio',
+    options: ['I avoid it — it feels like a trap', 'I use it reluctantly', 'I see the potential but need a guide', 'I want a complete infrastructure overhaul'],
+  },
+];
+---
+
+<BaseLayout
+  title="Your Infrastructure is Leaking Life"
+  description="AXIS delivers Sovereign Digital Infrastructure for Kenyan enterprises. Clinical system architecture, M-Pesa automation, and authority content. Mombasa & Nairobi."
+  schema={homeSchema}
+  page="home"
+>
+
+  <!-- ── HERO SECTION ─────────────────────────── -->
+  <section style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:80px 0;">
+
+    <!-- Background geometry -->
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;">
+      <div style="position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 65%);"></div>
+      <div style="position:absolute;bottom:0;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(79,255,176,0.04) 0%,transparent 60%);"></div>
+      <!-- Grid lines -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.025;" preserveAspectRatio="none">
+        <defs>
+          <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(201,168,76,1)" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+      </svg>
+    </div>
+
+    <div class="section-container" style="position:relative;z-index:1;">
+      <div style="max-width:800px;">
+
+        <!-- System Identifier -->
+        <div data-reveal style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+          <div class="status-dot"></div>
+          <span class="t-label">AXIS DIAGNOSTIC ENGINE · V2.1 · MOMBASA</span>
+        </div>
+
+        <!-- Primary Headline -->
+        <h1 class="t-display-xl" data-reveal data-reveal-delay="1"
+          style="color:rgba(255,255,255,0.97);margin-bottom:24px;">
+          Your Infrastructure<br/>
+          <em style="color:var(--c-gold);font-style:italic;">is Leaking Life.</em>
+        </h1>
+
+        <!-- Sub-headline -->
+        <p data-reveal data-reveal-delay="2"
+          style="font-family:var(--font-body);font-size:clamp(1rem,2vw,1.2rem);font-weight:300;color:rgba(255,255,255,0.6);max-width:580px;line-height:1.7;margin-bottom:40px;">
+          A generic web presence is not a system — it is a liability. AXIS engineers the sovereign infrastructure that converts authority into revenue, silently, automatically, at Kenyan scale.
+        </p>
+
+        <!-- CTA Row -->
+        <div data-reveal data-reveal-delay="3" style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:64px;">
+          <a href="#audit" class="btn-primary">
+            Begin Infrastructure Audit
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#gift" class="btn-ghost">
+            Download The AXIS Manifesto
+          </a>
+        </div>
+
+        <!-- Proof Bar -->
+        <div data-reveal data-reveal-delay="4" style="display:flex;flex-wrap:wrap;gap:32px;">
+          {metrics.map(m => (
+            <div>
+              <div style="font-family:var(--font-display);font-size:2rem;font-weight:300;color:var(--c-gold);line-height:1;">
+                {m.value}{m.suffix}
+              </div>
+              <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:4px;">{m.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AUDIT TOOL ──────────────────────────── -->
+  <section id="audit" style="padding:100px 0;">
+    <div class="section-container">
+
+      <div style="text-align:center;margin-bottom:64px;">
+        <p class="t-label" data-reveal style="margin-bottom:12px;">INFRASTRUCTURE DIAGNOSTIC</p>
+        <h2 class="t-display-lg" data-reveal data-reveal-delay="1">
+          The <em style="color:var(--c-gold);">Authority</em> Assessment
+        </h2>
+        <p class="t-body" data-reveal data-reveal-delay="2" style="max-width:500px;margin:16px auto 0;">
+          Four clinical questions. One precise Gap Report delivered to your inbox within minutes.
+        </p>
+      </div>
+
+      <!-- Audit Card -->
+      <div data-reveal style="max-width:760px;margin:0 auto;" id="audit-tool">
+        <div class="glass-card" style="padding:48px;position:relative;overflow:hidden;">
+          <!-- Scan line -->
+          <div class="scan-line"></div>
+
+          <!-- Progress Indicator -->
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:40px;" id="audit-progress">
+            {auditSteps.map((s, i) => (
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div
+                  data-step-dot={s.id}
+                  style={`width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.65rem;font-weight:500;border:1px solid;transition:all 0.3s;${i===0?'background:var(--c-gold);color:var(--c-void);border-color:var(--c-gold);':'background:transparent;color:rgba(255,255,255,0.3);border-color:rgba(255,255,255,0.12);'}`}
+                >
+                  {s.id}
+                </div>
+                <span style={`font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;${i===0?'color:rgba(255,255,255,0.7);':'color:rgba(255,255,255,0.25);'}`}>{s.label}</span>
+                {i < auditSteps.length - 1 && (
+                  <div style="width:32px;height:1px;background:rgba(255,255,255,0.1);margin:0 4px;"></div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <!-- Steps -->
+          {auditSteps.map((step, idx) => (
+            <div
+              data-audit-step={step.id}
+              style={`display:${idx===0?'block':'none'};`}
+            >
+              <p class="t-label" style="margin-bottom:8px;">STEP {step.id} OF 4</p>
+              <h3 style="font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:rgba(255,255,255,0.95);margin-bottom:28px;line-height:1.2;">
+                {step.question}
+              </h3>
+
+              <div style="display:flex;flex-direction:column;gap:10px;" data-options={step.id}>
+                {step.options.map((opt, oi) => (
+                  <label style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:10px;cursor:pointer;transition:all 0.2s;user-select:none;" class="audit-option">
+                    <input
+                      type={step.type === 'radio' ? 'radio' : 'checkbox'}
+                      name={`step-${step.id}`}
+                      value={opt}
+                      style="accent-color:var(--c-gold);width:16px;height:16px;"
+                    />
+                    <span style="font-family:var(--font-body);font-size:0.95rem;color:rgba(255,255,255,0.75);">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <!-- Final Step: Email Capture -->
+          <div data-audit-step="5" style="display:none;">
+            <p class="t-label" style="margin-bottom:8px;">ALMOST DONE</p>
+            <h3 style="font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:rgba(255,255,255,0.95);margin-bottom:12px;">
+              Where shall we dispatch your Gap Report?
+            </h3>
+            <p class="t-body" style="margin-bottom:28px;font-size:0.9rem;">
+              A custom Infrastructure Gap Report, generated in real-time from your inputs, will be sent immediately.
+            </p>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <input type="text"  id="audit-name"  class="input-field" placeholder="Your full name" autocomplete="name" />
+              <input type="email" id="audit-email" class="input-field" placeholder="hello@yourbusiness.com" autocomplete="email" />
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:36px;">
+            <button
+              id="audit-back"
+              class="btn-ghost"
+              style="display:none;"
+              onclick="window.__auditNav(-1)"
+            >
+              ← Back
+            </button>
+            <div></div>
+            <button
+              id="audit-next"
+              class="btn-primary"
+              onclick="window.__auditNav(1)"
+            >
+              Continue
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <!-- Result State -->
+          <div id="audit-success" style="display:none;text-align:center;padding:40px 0;">
+            <div style="width:56px;height:56px;border-radius:50%;background:rgba(79,255,176,0.1);border:1px solid rgba(79,255,176,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L19 7" stroke="#4FFFB0" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3 style="font-family:var(--font-display);font-size:1.8rem;color:rgba(255,255,255,0.95);margin-bottom:8px;">Report Dispatched.</h3>
+            <p class="t-body" style="font-size:0.9rem;">Your Infrastructure Gap Report is en route. Check your inbox within 5 minutes.</p>
+            <a href="/initiate" class="btn-primary" style="margin-top:28px;display:inline-flex;">
+              Schedule Deep-Dive Session
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GIFT SECTION ────────────────────────── -->
+  <section id="gift" style="padding:80px 0;">
+    <div class="section-container">
+      <div class="glass-card" data-reveal style="padding:56px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,rgba(20,20,23,0.95) 50%);">
+        <div>
+          <p class="t-label" style="margin-bottom:12px;">FREE RESOURCE</p>
+          <h2 style="font-family:var(--font-display);font-size:2.2rem;font-weight:400;color:rgba(255,255,255,0.97);margin-bottom:16px;line-height:1.15;">
+            The AXIS Manifesto:<br/><em style="color:var(--c-gold);">How Sovereign Infrastructure Is Built</em>
+          </h2>
+          <p class="t-body" style="max-width:480px;margin-bottom:28px;">
+            38 pages of clinical methodology, vocabulary architecture, and the exact system blueprints AXIS uses for every infrastructure engagement. No registration required.
+          </p>
+          <a href="/vault/axis-manifesto.pdf" class="btn-primary" download>
+            Download PDF — Free
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4.5 6.5l2.5 3 2.5-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+
+        <div style="width:180px;height:240px;background:linear-gradient(145deg,rgba(201,168,76,0.12) 0%,rgba(20,20,23,0.8) 100%);border:1px solid rgba(201,168,76,0.2);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;box-shadow:var(--shadow-glow-gold);flex-shrink:0;" class="hidden md:flex">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M16 6h16l10 10v26H6V6h10z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+            <path d="M32 6v10h10" stroke="#C9A84C" stroke-width="1.5"/>
+            <path d="M14 24h20M14 30h14" stroke="rgba(201,168,76,0.5)" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+          <span style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--c-gold);text-align:center;">THE AXIS<br/>MANIFESTO</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROOF BENTO GRID ────────────────────── -->
+  <section style="padding:80px 0 120px;">
+    <div class="section-container">
+      <div style="text-align:center;margin-bottom:56px;">
+        <p class="t-label" data-reveal style="margin-bottom:12px;">LIVE INFRASTRUCTURE METRICS</p>
+        <h2 class="t-display-md" data-reveal data-reveal-delay="1">
+          The System <em style="color:var(--c-gold);">Speaks</em> for Itself
+        </h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:16px;">
+
+        <!-- Large metric -->
+        <div class="glass-card metric-chip" data-reveal style="grid-column:span 4;padding:32px;">
+          <span class="value" style="font-size:3rem;">47</span>
+          <span class="label">Total Systems Under Management</span>
+          <div style="margin-top:16px;height:2px;background:linear-gradient(to right,var(--c-gold),transparent);border-radius:1px;"></div>
+        </div>
+
+        <div class="glass-card metric-chip" data-reveal data-reveal-delay="1" style="grid-column:span 4;padding:32px;">
+          <span class="value" style="font-size:3rem;">98<span style="font-size:1.4rem;">ms</span></span>
+          <span class="label">Avg. API Response Latency</span>
+          <div style="margin-top:16px;height:2px;background:linear-gradient(to right,var(--c-signal),transparent);border-radius:1px;"></div>
+        </div>
+
+        <div class="glass-card metric-chip" data-reveal data-reveal-delay="2" style="grid-column:span 4;padding:32px;">
+          <span class="value" style="font-size:3rem;color:var(--c-signal);">3.2M</span>
+          <span class="label">KES Automated via M-Pesa This Year</span>
+          <div style="margin-top:16px;height:2px;background:linear-gradient(to right,var(--c-signal),transparent);border-radius:1px;"></div>
+        </div>
+
+        <!-- Wide status bar -->
+        <div class="glass-card" data-reveal style="grid-column:span 8;padding:32px;display:flex;justify-content:space-between;align-items:center;gap:24px;">
+          <div>
+            <p class="t-label" style="margin-bottom:8px;">SYSTEM UPTIME — CURRENT YEAR</p>
+            <div style="font-family:var(--font-display);font-size:3rem;font-weight:300;color:var(--c-gold);">100%</div>
+          </div>
+          <div style="flex:1;display:flex;gap:3px;align-items:flex-end;height:48px;">
+            {Array.from({length:52},(_,i) => (
+              <div style={`flex:1;border-radius:2px 2px 0 0;background:rgba(79,255,176,${0.2 + Math.random()*0.7});height:${60+Math.random()*40}%;`}></div>
+            ))}
+          </div>
+        </div>
+
+        <div class="glass-card" data-reveal data-reveal-delay="1" style="grid-column:span 4;padding:32px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <p class="t-label" style="margin-bottom:8px;">LEAD CONVERSION RATE</p>
+            <div style="font-family:var(--font-display);font-size:2.8rem;font-weight:300;color:var(--c-ember);">68%</div>
+          </div>
+          <a href="/archive" style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.12em;color:rgba(255,255,255,0.45);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:4px;display:inline-block;margin-top:12px;">
+            Review Infrastructure Archive →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<!-- ── Audit Island Script ─────────────────── -->
+<script>
+  let currentStep = 1;
+  const totalSteps = 4;
+  const auditData: Record<string, string[]> = {};
+
+  window.__auditNav = function (direction: number) {
+    if (currentStep === totalSteps && direction === 1) {
+      // Show email capture
+      const activeStep = document.querySelector(`[data-audit-step="${currentStep}"]`) as HTMLElement;
+      if (activeStep) activeStep.style.display = 'none';
+      const emailStep = document.querySelector('[data-audit-step="5"]') as HTMLElement;
+      if (emailStep) emailStep.style.display = 'block';
+      const nextBtn = document.getElementById('audit-next') as HTMLButtonElement;
+      if (nextBtn) { nextBtn.textContent = 'Submit Report Request'; nextBtn.onclick = submitAudit; }
+      currentStep = 5;
+      updateProgress();
+      return;
+    }
+
+    if (currentStep === 5 && direction === 1) { submitAudit(); return; }
+
+    const activeStep = document.querySelector(`[data-audit-step="${currentStep}"]`) as HTMLElement;
+    if (activeStep) activeStep.style.display = 'none';
+
+    const newStep = currentStep + direction;
+    const nextStepEl = document.querySelector(`[data-audit-step="${newStep}"]`) as HTMLElement;
+    if (nextStepEl) nextStepEl.style.display = 'block';
+
+    currentStep = newStep;
+    updateProgress();
+  };
+
+  function updateProgress() {
+    const backBtn = document.getElementById('audit-back') as HTMLElement;
+    if (backBtn) backBtn.style.display = currentStep > 1 ? 'block' : 'none';
+
+    for (let i = 1; i <= 4; i++) {
+      const dot = document.querySelector(`[data-step-dot="${i}"]`) as HTMLElement;
+      if (!dot) continue;
+      if (i < currentStep) {
+        dot.style.background = 'rgba(79,255,176,0.2)';
+        dot.style.borderColor = 'rgba(79,255,176,0.4)';
+        dot.style.color = 'var(--c-signal)';
+      } else if (i === currentStep) {
+        dot.style.background = 'var(--c-gold)';
+        dot.style.borderColor = 'var(--c-gold)';
+        dot.style.color = 'var(--c-void)';
+      } else {
+        dot.style.background = 'transparent';
+        dot.style.borderColor = 'rgba(255,255,255,0.12)';
+        dot.style.color = 'rgba(255,255,255,0.3)';
+      }
+    }
+  }
+
+  async function submitAudit() {
+    const name  = (document.getElementById('audit-name')  as HTMLInputElement)?.value?.trim();
+    const email = (document.getElementById('audit-email') as HTMLInputElement)?.value?.trim();
+    if (!name || !email) { alert('Please enter your name and email.'); return; }
+
+    const nextBtn = document.getElementById('audit-next') as HTMLButtonElement;
+    if (nextBtn) { nextBtn.textContent = 'Processing…'; nextBtn.disabled = true; }
+
+    try {
+      await fetch('/api/v1/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, responses: auditData }),
+      });
+    } catch (_) { /* graceful degradation */ }
+
+    const tool       = document.getElementById('audit-tool') as HTMLElement;
+    const successEl  = document.getElementById('audit-success') as HTMLElement;
+    const allContent = tool?.querySelectorAll('[data-audit-step], #audit-progress, #audit-back, #audit-next') as NodeListOf<HTMLElement>;
+    allContent?.forEach(el => { el.style.display = 'none'; });
+    if (successEl) successEl.style.display = 'block';
+  }
+
+  // Option hover styles
+  document.querySelectorAll('.audit-option').forEach(opt => {
+    opt.addEventListener('mouseenter', () => {
+      (opt as HTMLElement).style.borderColor = 'rgba(201,168,76,0.3)';
+      (opt as HTMLElement).style.background  = 'rgba(201,168,76,0.04)';
+    });
+    opt.addEventListener('mouseleave', () => {
+      (opt as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)';
+      (opt as HTMLElement).style.background  = 'rgba(255,255,255,0.02)';
+    });
+  });
+</script>
