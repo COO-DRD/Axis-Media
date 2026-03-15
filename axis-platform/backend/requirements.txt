@@ -32,3 +32,5 @@ passlib[bcrypt]==1.7.4
 # Utilities
 python-multipart==0.0.12
 python-dotenv==1.0.1
+
+email-validator
