@@ -107,7 +107,7 @@ const assets = [
     btn.disabled    = true;
 
     try {
-      const res  = await fetch('/api/v1/vault/access', {
+      const res  = await fetch('https://axismediaweb.up.railway.app/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, asset: slug }),

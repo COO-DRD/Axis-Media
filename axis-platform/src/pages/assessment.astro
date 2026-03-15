@@ -1,71 +1,153 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Free Business Assessment" page="assessment">
+<BaseLayout title="Infrastructure Diagnostic" description="A free 5-question diagnostic that reveals exactly where your business is haemorrhaging revenue. No generic form. Real answers." page="assessment">
+
 <section class="sec" style="padding-top:clamp(56px,10vw,80px);">
-  <div style="text-align:center;max-width:540px;margin:0 auto clamp(32px,5vw,48px);">
-    <p class="lbl rv" style="margin-bottom:8px;">Free Business Assessment</p>
-    <h1 class="sh rv" style="font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:14px;transition-delay:.08s;">Tell Us About<br/><em style="color:var(--gold);font-style:italic;">Your Business</em></h1>
-    <p class="body-t rv" style="transition-delay:.16s;">Three quick questions. We'll come back with a clear picture of what your business needs online — and what it would cost.</p>
+
+  <div style="text-align:center;max-width:600px;margin:0 auto clamp(32px,5vw,48px);">
+    <div class="pill rv" style="margin-bottom:16px;width:fit-content;margin-left:auto;margin-right:auto;">
+      <div class="dot"></div>
+      <span style="font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);">Free · 3 Minutes · No Obligation</span>
+    </div>
+    <p class="lbl rv" style="margin-bottom:8px;transition-delay:.04s;">Infrastructure Diagnostic</p>
+    <h1 class="sh rv" style="font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:14px;transition-delay:.08s;">
+      Where Is Your Business<br/><em style="color:var(--gold);font-style:italic;">Leaking Revenue?</em>
+    </h1>
+    <p class="body-t rv" style="transition-delay:.16s;">This isn't a contact form. These questions are designed to surface the exact infrastructure gaps costing you money right now — before we even speak.</p>
   </div>
-  <div style="max-width:640px;margin:0 auto;">
+
+  <div style="max-width:660px;margin:0 auto;">
     <div class="gc" style="padding:clamp(28px,5vw,44px);border-radius:18px;">
-      <div style="display:flex;gap:6px;margin-bottom:24px;" id="aprog">
-        <div class="pb pb-n" id="ap1" style="flex:2;"></div>
-        <div class="pb pb-w" id="ap2" style="flex:1;"></div>
-        <div class="pb pb-w" id="ap3" style="flex:1;"></div>
+
+      <!-- Progress bar -->
+      <div style="display:flex;gap:5px;margin-bottom:6px;" id="aprog">
+        <div class="pb pb-n" id="ap1" style="flex:2;height:3px;"></div>
+        <div class="pb pb-w" id="ap2" style="flex:1;height:3px;"></div>
+        <div class="pb pb-w" id="ap3" style="flex:1;height:3px;"></div>
+        <div class="pb pb-w" id="ap4" style="flex:1;height:3px;"></div>
+        <div class="pb pb-w" id="ap5" style="flex:1;height:3px;"></div>
       </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:24px;">
+        <span id="step-label" style="font-family:var(--fm);font-size:.52rem;color:var(--t3);">Step 1 of 5</span>
+        <span id="step-pct" style="font-family:var(--fm);font-size:.52rem;color:var(--gold);">20%</span>
+      </div>
+
+      <!-- ── Step 1: M-Pesa hours ── -->
       <div id="as1">
-        <p style="font-family:var(--fm);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">About Your Business · 1 of 3</p>
-        <p style="font-family:var(--fd);font-size:clamp(1.3rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:20px;line-height:1.2;">What kind of business are you running?</p>
-        <div class="opts-wrap" style="display:flex;flex-direction:column;gap:8px;">
-          {['Professional Services (lawyer, consultant, accountant)','Retail or E-Commerce','Hospitality or Events','Real Estate or Property','Tech or Digital Services','Other'].map(o=>(
-            <label class="opt"><input type="radio" name="q1"/>{o}</label>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:4px 10px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);border-radius:6px;margin-bottom:14px;">
+          <span style="font-family:var(--fm);font-size:.52rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;">Liquidity Leakage</span>
+        </div>
+        <p style="font-family:var(--fd);font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:8px;line-height:1.25;">How many hours per week does your team spend manually verifying M-Pesa payments?</p>
+        <p style="font-family:var(--fm);font-size:.6rem;color:var(--t3);margin-bottom:20px;">Industry benchmark: businesses losing more than 3 hours/week here lose an average of KES 45,000/month in admin overhead.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {['0 — We have this fully automated','1–2 hours — minor friction','3–5 hours — significant manual work','5–10 hours — this is a real problem','10+ hours — we have no system at all'].map((o,i) => (
+            <label class="opt"><input type="radio" name="q1" value={i}/>{o}</label>
           ))}
         </div>
       </div>
+
+      <!-- ── Step 2: Lead follow-up speed ── -->
       <div id="as2" style="display:none;">
-        <p style="font-family:var(--fm);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Your Biggest Challenge · 2 of 3</p>
-        <p style="font-family:var(--fd);font-size:clamp(1.3rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:20px;line-height:1.2;">What is costing you the most right now?</p>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          {["I'm not getting enough new clients online","Collecting payments is slow and painful","I spend too much time on admin and follow-ups","My website looks outdated and costs me clients","Competitors are showing up online and I'm not"].map(o=>(
-            <label class="opt"><input type="radio" name="q2"/>{o}</label>
-          ))}
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:4px 10px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);border-radius:6px;margin-bottom:14px;">
+          <span style="font-family:var(--fm);font-size:.52rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;">Acquisition Leakage</span>
+        </div>
+        <p style="font-family:var(--fd);font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:8px;line-height:1.25;">On a scale of 1–10, how confident are you that a lead from your website is followed up within 5 minutes?</p>
+        <p style="font-family:var(--fm);font-size:.6rem;color:var(--t3);margin-bottom:20px;">Research shows leads contacted within 5 minutes are 9× more likely to convert. After 30 minutes, that lead has already spoken to your competitor.</p>
+        <div id="slider-wrap" style="padding:8px 0 24px;">
+          <input type="range" id="q2-slider" min="1" max="10" value="5" style="width:100%;accent-color:var(--gold);cursor:pointer;"/>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;">
+            <span style="font-family:var(--fm);font-size:.54rem;color:var(--t3);">1 — Not at all</span>
+            <span id="slider-val" style="font-family:var(--fd);font-size:1.4rem;font-weight:300;color:var(--gold);">5</span>
+            <span style="font-family:var(--fm);font-size:.54rem;color:var(--t3);">10 — Always</span>
+          </div>
+          <div id="slider-msg" style="margin-top:12px;padding:10px 14px;border-radius:8px;font-family:var(--fm);font-size:.62rem;line-height:1.55;"></div>
         </div>
       </div>
+
+      <!-- ── Step 3: Revenue leakage estimate ── -->
       <div id="as3" style="display:none;">
-        <p style="font-family:var(--fm);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Where You Are · 3 of 3</p>
-        <p style="font-family:var(--fd);font-size:clamp(1.3rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:20px;line-height:1.2;">What does your business look like online now?</p>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:4px 10px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);border-radius:6px;margin-bottom:14px;">
+          <span style="font-family:var(--fm);font-size:.52rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;">Operational Drag</span>
+        </div>
+        <p style="font-family:var(--fd);font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:8px;line-height:1.25;">What is your estimated revenue leakage per month due to manual admin, missed follow-ups, and payment friction?</p>
+        <p style="font-family:var(--fm);font-size:.6rem;color:var(--t3);margin-bottom:20px;">Be honest — most business owners underestimate this by 40%. This number is what infrastructure investment pays back.</p>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          {["I have nothing — no website, no online presence","I have a basic website but it doesn't do much","I have a decent website but no automation or payments","I have a full setup but something isn't working"].map(o=>(
-            <label class="opt"><input type="radio" name="q3"/>{o}</label>
+          {[
+            "Under KES 10,000 — my systems are solid",
+            "KES 10,000–30,000 — there's some friction",
+            "KES 30,000–80,000 — this is a real cost",
+            "KES 80,000–200,000 — I know this is hurting us",
+            "KES 200,000+ — we have a serious infrastructure problem",
+            "I don't know — and that itself is the problem"
+          ].map((o,i) => (
+            <label class="opt"><input type="radio" name="q3" value={i}/>{o}</label>
           ))}
         </div>
       </div>
+
+      <!-- ── Step 4: Current digital state ── -->
       <div id="as4" style="display:none;">
-        <p style="font-family:var(--fm);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sig);margin-bottom:8px;">Almost There</p>
-        <p style="font-family:var(--fd);font-size:clamp(1.3rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:12px;line-height:1.2;">Where should we send your assessment?</p>
-        <p class="body-t" style="font-size:clamp(.78rem,1vw,.84rem);margin-bottom:18px;">We'll review your answers and reply with a personalised recommendation — usually within a few hours.</p>
-        <input class="inp" id="an"  type="text"  placeholder="Your full name"/>
-        <input class="inp" id="ae"  type="email" placeholder="Your email address"/>
-        <input class="inp" id="aph" type="tel"   placeholder="Phone / WhatsApp" style="margin-bottom:0;"/>
-      </div>
-      <div id="as-done" style="display:none;text-align:center;padding:clamp(20px,4vw,32px) 0;">
-        <div style="width:52px;height:52px;border-radius:50%;background:rgba(79,255,176,.09);border:1px solid rgba(79,255,176,.28);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#4FFFB0" stroke-width="2" stroke-linecap="round"/></svg>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:4px 10px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);border-radius:6px;margin-bottom:14px;">
+          <span style="font-family:var(--fm);font-size:.52rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;">Authority Audit</span>
         </div>
-        <p style="font-family:var(--fd);font-size:clamp(1.6rem,3vw,2rem);font-weight:300;color:var(--t1);margin-bottom:8px;">Assessment Received.</p>
-        <p class="body-t" style="max-width:360px;margin:0 auto 24px;">We'll get back to you within a few hours. Keep an eye on your inbox.</p>
-        <a href="/work" class="btn-o" style="font-size:.8rem;">Explore Our Work While You Wait →</a>
+        <p style="font-family:var(--fd);font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:8px;line-height:1.25;">What does your business look like online right now?</p>
+        <p style="font-family:var(--fm);font-size:.6rem;color:var(--t3);margin-bottom:20px;">Your digital presence is the first thing a high-value client sees before they decide whether to pick up the phone.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          {[
+            "No website — we rely on WhatsApp and word of mouth",
+            "A basic website — but it doesn't generate any enquiries",
+            "A decent website — but no automation or payment integration",
+            "A full setup — but something clearly isn't working",
+            "We have strong infrastructure — I want to make it exceptional"
+          ].map((o,i) => (
+            <label class="opt"><input type="radio" name="q4" value={i}/>{o}</label>
+          ))}
+        </div>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;" id="afoot">
-        <button class="btn-o" id="abk" style="display:none;font-size:.74rem;" onclick="aN(-1)">← Back</button>
+
+      <!-- ── Step 5: Contact ── -->
+      <div id="as5" style="display:none;">
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:4px 10px;background:rgba(79,255,176,.08);border:1px solid rgba(79,255,176,.2);border-radius:6px;margin-bottom:14px;">
+          <div class="dot" style="width:5px;height:5px;"></div>
+          <span style="font-family:var(--fm);font-size:.52rem;color:var(--sig);letter-spacing:.1em;text-transform:uppercase;">Final Step</span>
+        </div>
+        <p style="font-family:var(--fd);font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:400;color:var(--t1);margin-bottom:8px;line-height:1.25;">Where should I send your Infrastructure Diagnostic Report?</p>
+        <p style="font-family:var(--fm);font-size:.6rem;color:var(--t3);margin-bottom:18px;">Based on your answers, I'll compile a personalised assessment of your revenue leakage and the exact infrastructure to close it. Usually back to you within a few hours.</p>
+
+        <!-- Live score preview -->
+        <div id="score-preview" style="padding:14px 16px;background:var(--sd);border:1px solid var(--sb);border-radius:10px;margin-bottom:18px;">
+          <div style="font-family:var(--fm);font-size:.54rem;color:var(--sig);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Your Preliminary Diagnostic</div>
+          <div id="score-text" style="font-size:clamp(.82rem,1.1vw,.9rem);color:var(--t2);line-height:1.65;font-weight:300;">Calculating your infrastructure score…</div>
+        </div>
+
+        <input class="inp" id="an"  type="text"  placeholder="Your full name"/>
+        <input class="inp" id="ae"  type="email" placeholder="Your email — where we send the report"/>
+        <input class="inp" id="aph" type="tel"   placeholder="WhatsApp number (for same-day follow-up)" style="margin-bottom:0;"/>
+      </div>
+
+      <!-- Done state -->
+      <div id="as-done" style="display:none;text-align:center;padding:clamp(20px,4vw,32px) 0;">
+        <div style="width:56px;height:56px;border-radius:50%;background:rgba(79,255,176,.08);border:1px solid rgba(79,255,176,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#4FFFB0" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <p style="font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;color:var(--t1);margin-bottom:8px;">Diagnostic Received.</p>
+        <p class="body-t" style="max-width:380px;margin:0 auto 8px;">Your infrastructure analysis is being compiled. Expect a personalised report within a few hours.</p>
+        <p style="font-family:var(--fm);font-size:.6rem;color:var(--t3);margin-bottom:24px;">Check your WhatsApp and email — I follow up same day.</p>
+        <a href="/work" class="btn-o" style="font-size:.8rem;">See Businesses We've Fixed While You Wait →</a>
+      </div>
+
+      <!-- Footer nav -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;" id="afoot">
+        <button class="btn-o" id="abk" style="display:none;font-size:.74rem;padding:9px 16px;" onclick="aN(-1)">← Back</button>
         <div></div>
-        <button class="btn-g" id="anxt" onclick="aN(1)" style="font-size:.76rem;">Continue →</button>
+        <button class="btn-g" id="anxt" style="font-size:.76rem;padding:10px 22px;">Next →</button>
       </div>
     </div>
+
+    <!-- Trust signals -->
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;">
-      {[{v:'Free',l:'No cost ever'},{v:'Fast',l:'Response in hours'},{v:'Clear',l:'No jargon'}].map(t=>(
+      {[{v:'Free',l:'Zero cost ever'},{v:'Private',l:'Answers are confidential'},{v:'Fast',l:'Report within hours'}].map(t=>(
         <div class="gc" style="padding:12px;text-align:center;">
           <div style="font-family:var(--fd);font-size:1.3rem;color:var(--gold);">{t.v}</div>
           <div class="lbl" style="font-size:.5rem;margin-top:3px;">{t.l}</div>
@@ -77,45 +159,116 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script is:inline>
-var aStep=1;
-function aN(d){
-  if(d===1&&aStep===4){submitA();return;}
-  document.getElementById('as'+aStep).style.display='none';
-  aStep=Math.max(1,Math.min(4,aStep+d));
-  document.getElementById('as'+aStep).style.display='block';
-  updateAP();
-  document.getElementById('abk').style.display=aStep>1?'block':'none';
-  var nxt=document.getElementById('anxt');
-  nxt.textContent=aStep===4?'Send Assessment →':'Continue →';
-  nxt.onclick=aStep===4?submitA:function(){aN(1);};
+var aStep=1;var TOTAL=5;
+var answers={};
+
+// Slider logic
+var slider=document.getElementById('q2-slider');
+var sliderVal=document.getElementById('slider-val');
+var sliderMsg=document.getElementById('slider-msg');
+var msgs=[
+  {min:1,max:3,bg:'rgba(232,85,85,.08)',bc:'rgba(232,85,85,.2)',col:'#E85555',txt:'Critical — leads are reaching your competitors. This single gap typically costs KES 50,000–200,000/month.'},
+  {min:4,max:6,bg:'rgba(230,126,34,.08)',bc:'rgba(230,126,34,.2)',col:'#E67E22',txt:'Moderate risk — you\'re capturing some leads but losing others. An automated follow-up sequence would likely add KES 30,000+/month.'},
+  {min:7,max:9,bg:'rgba(201,168,76,.08)',bc:'rgba(201,168,76,.2)',col:'#C9A84C',txt:'Good — but not excellent. The difference between 8 and 10 is the difference between chasing clients and clients chasing you.'},
+  {min:10,max:10,bg:'rgba(79,255,176,.08)',bc:'rgba(79,255,176,.2)',col:'#4FFFB0',txt:'Excellent infrastructure. Let\'s talk about what the next level looks like — compounding your existing systems.'},
+];
+function updateSlider(){
+  var v=parseInt(slider.value);
+  sliderVal.textContent=v;
+  answers.q2=v;
+  var m=msgs.find(function(x){return v>=x.min&&v<=x.max;})||msgs[0];
+  sliderMsg.style.background=m.bg;
+  sliderMsg.style.border='1px solid '+m.bc;
+  sliderMsg.style.color=m.col;
+  sliderMsg.textContent=m.txt;
 }
-function updateAP(){
-  for(var i=1;i<=3;i++){
+if(slider){slider.addEventListener('input',updateSlider);updateSlider();}
+
+function buildScore(){
+  var lines=[];
+  var q1=answers.q1||0;
+  var q2=answers.q2||5;
+  var q3=answers.q3||0;
+  var q4=answers.q4||0;
+  var leakage=['minimal leakage','KES 10–30K/month','KES 30–80K/month','KES 80–200K/month','KES 200K+/month','unknown leakage'];
+  var state=['no digital presence','basic presence','functional but manual','full stack but underperforming','strong — ready to scale'];
+  lines.push('Payment friction: '+(q1===0?'✓ resolved':'⚠ '+['0','1–2hrs/wk','3–5hrs/wk','5–10hrs/wk','10+hrs/wk'][q1]));
+  lines.push('Lead follow-up speed: '+(q2>=8?'✓ strong ('+q2+'/10)':'⚠ risk zone ('+q2+'/10)'));
+  lines.push('Revenue leakage: '+leakage[q3]);
+  lines.push('Digital authority: '+state[q4]);
+  return lines.join(' · ');
+}
+
+function aN(dir){
+  if(dir===1&&aStep===TOTAL){submitA();return;}
+  var cur=document.getElementById('as'+aStep);
+  if(cur)cur.style.display='none';
+  aStep=Math.max(1,Math.min(TOTAL,aStep+dir));
+  var next=document.getElementById('as'+aStep);
+  if(next)next.style.display='block';
+  updateProg();
+  document.getElementById('abk').style.display=aStep>1?'block':'none';
+  var btn=document.getElementById('anxt');
+  btn.textContent=aStep===TOTAL?'Send Diagnostic →':'Next →';
+  btn.onclick=aStep===TOTAL?submitA:function(){aN(1);};
+  if(aStep===TOTAL){
+    var st=document.getElementById('score-text');
+    if(st)st.textContent=buildScore();
+  }
+}
+
+function updateProg(){
+  var pct=Math.round((aStep/TOTAL)*100);
+  document.getElementById('step-label').textContent='Step '+aStep+' of '+TOTAL;
+  document.getElementById('step-pct').textContent=pct+'%';
+  for(var i=1;i<=TOTAL;i++){
     var el=document.getElementById('ap'+i);
     el.className='pb '+(i<aStep?'pb-d':i===aStep?'pb-n':'pb-w');
     el.style.flex=i===aStep?'2':'1';
+    el.style.height='3px';
   }
 }
+
 function submitA(){
   var n=document.getElementById('an').value.trim();
   var e=document.getElementById('ae').value.trim();
   var ph=document.getElementById('aph').value.trim();
-  if(!n||!e){alert('Please enter your name and email.');return;}
+  if(!n||!e){alert('Please enter your name and email so we can send your report.');return;}
   var btn=document.getElementById('anxt');
   btn.textContent='Sending…';btn.disabled=true;
-  fetch('https://axismediaweb.up.railway.app/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,phone:ph,source:'assessment'})}).catch(function(){});
+  fetch('https://axismediaweb.up.railway.app/',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      name:n,email:e,phone:ph,source:'diagnostic',
+      q1_mpesa_hours:answers.q1,
+      q2_followup_score:answers.q2,
+      q3_leakage:answers.q3,
+      q4_digital_state:answers.q4,
+      diagnostic_summary:buildScore()
+    })
+  }).catch(function(){});
   setTimeout(function(){
-    for(var i=1;i<=4;i++){var el=document.getElementById('as'+i);if(el)el.style.display='none';}
+    for(var i=1;i<=TOTAL;i++){var el=document.getElementById('as'+i);if(el)el.style.display='none';}
     document.getElementById('aprog').style.display='none';
     document.getElementById('afoot').style.display='none';
     document.getElementById('as-done').style.display='block';
   },700);
 }
+
+// Option click handler
 document.querySelectorAll('.opt').forEach(function(o){
   o.addEventListener('click',function(){
     var n=o.querySelector('input').name;
-    if(n)document.querySelectorAll('input[name="'+n+'"]').forEach(function(i){i.closest('.opt').classList.remove('sel');});
+    var v=o.querySelector('input').value;
+    if(n){
+      document.querySelectorAll('input[name="'+n+'"]').forEach(function(i){i.closest('.opt').classList.remove('sel');});
+      answers[n]=parseInt(v);
+    }
     o.classList.add('sel');
   });
 });
+
+// Init
+document.getElementById('anxt').onclick=function(){aN(1);};
 </script>
