@@ -24,14 +24,13 @@ class Settings(BaseSettings):
     RESEND_API_KEY: str
     RESEND_FROM: str = "AXIS Infrastructure <axis@axismediaws.com>"
 
-    # Safaricom Daraja
-    # Safaricom Daraja (Neutralized for now)
-    DARAJA_CONSUMER_KEY: str = "placeholder"
-    DARAJA_CONSUMER_SECRET: str = "placeholder"
-    DARAJA_SHORTCODE: str = "placeholder"
-    DARAJA_PASSKEY: str = "placeholder"
+   # Safaricom Daraja
+    DARAJA_CONSUMER_KEY: str = ""
+    DARAJA_CONSUMER_SECRET: str = ""
+    DARAJA_SHORTCODE: str = ""        # Business shortcode or till number
+    DARAJA_PASSKEY: str = ""
     DARAJA_CALLBACK_URL: str = "https://axismediaws.com/api/v1/daraja/callback"
-    DARAJA_ENV: str = "sandbox"  # Defaulting to sandbox is safer for build
+    DARAJA_ENV: str = "production"    # "sandbox" | "production"
 
     # Telegram
     TELEGRAM_BOT_TOKEN: str
