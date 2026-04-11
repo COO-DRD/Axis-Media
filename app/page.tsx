@@ -1,5 +1,5 @@
 // ============================================================================
-// Optimized Home Page
+// Optimized Home Page with Animated Background
 // Code-splitting, lazy loading, and reduced motion for 1000+ users
 // ============================================================================
 
@@ -10,6 +10,7 @@ import { SpiralNav } from '@/components/spiral-nav'
 import { SpiralHero } from '@/components/spiral-hero-optimized'
 import { FibonacciCursorClient } from '@/components/fibonacci-cursor-client'
 import { PartnerLogos } from '@/components/partner-logos'
+import { AnimatedBackground, FloatingGradient } from '@/components/animated-background'
 
 // Lazy load below-fold components
 const ProblemSpiral = lazy(() => import('@/components/problem-spiral').then(m => ({ default: m.ProblemSpiral })))
@@ -30,6 +31,10 @@ function SectionLoader() {
 export default function Home() {
   return (
     <main className="relative grain">
+      {/* Animated background effects */}
+      <FloatingGradient />
+      <AnimatedBackground />
+      
       {/* Cursor - client only */}
       <FibonacciCursorClient />
       
