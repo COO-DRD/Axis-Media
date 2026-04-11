@@ -6,9 +6,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Static export for Cloudflare Pages
-  output: 'export',
-  distDir: 'dist',
+  // For Cloudflare Pages with @cloudflare/next-on-pages
+  // Don't use output: 'export' - it breaks dynamic features
   allowedDevOrigins: ['127.0.0.1', 'localhost'],
   
   // Performance optimizations for high traffic
