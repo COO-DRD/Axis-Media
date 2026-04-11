@@ -1,0 +1,29 @@
+# DRD Digital - Digital Infrastructure Firm
+
+## About
+DRD Digital is a Mombasa-based digital infrastructure firm that builds authority websites, AI-powered business systems, and payment automation for corporate enterprises across Kenya and East Africa. Founded under the DR.DULLU brand by Ian Dullu, DRD Digital specialises in closing the infrastructure gap that causes East African businesses to lose revenue, leads, and market authority.
+
+## Location
+Mombasa, Kenya
+Serving: Kenya, East Africa
+
+## Founder
+Ian Dullu
+Digital Infrastructure Strategist
+DR.DULLU Brand
+
+## Services
+- Authority Website: Custom-built sites engineered to convert visitors into clients
+- Payment Automation: M-Pesa STK Push, automated receipts, instant notifications
+- AI Integration: Lead qualification, automated follow-ups, Tier 1 customer service
+- Lead Capture System: Multi-channel capture with automated response
+- Custom Software: Bespoke solutions for operational needs
+
+## Key Pages
+- / - Homepage
+- /work - Case Studies
+- /research - Research on African infrastructure failure
+- /diagnostic - Free infrastructure diagnostic
+
+## Contact
+Website: digital.dullugroup.co.ke

@@ -1,0 +1,171 @@
+{
+  "case_studies": [
+    {
+      "name": "Pwani Oil Digital Transformation",
+      "slug": "pwani-oil-digital-transformation",
+      "client": "Pwani Oil Products",
+      "industry": "Manufacturing",
+      "year": 2024,
+      "published": true,
+      "result": "340% increase in qualified leads within 90 days",
+      "result_label": "Lead Generation",
+      "brief": "Complete digital transformation for Kenya's leading cooking oil manufacturer, including e-commerce platform, SEO strategy, and analytics infrastructure.",
+      "challenge": "Legacy website was not mobile-responsive, had zero organic search visibility, and no e-commerce capability. Manual order processing was creating bottlenecks.",
+      "solution": "Built a Next.js e-commerce platform with Stripe payments, implemented comprehensive SEO strategy targeting commercial keywords, and integrated analytics for data-driven decisions.",
+      "stack": ["Next.js", "React", "Stripe", "SEO", "Analytics", "Tailwind CSS"],
+      "metrics": [
+        {"value": "340%", "label": "Lead Increase"},
+        {"value": "#1", "label": "Google Ranking"},
+        {"value": "2.1x", "label": "Conversion Rate"}
+      ]
+    },
+    {
+      "name": "Mombasa Continental Resort Visibility",
+      "slug": "mombasa-continental-resort",
+      "client": "Mombasa Continental Resort",
+      "industry": "Hospitality",
+      "year": 2023,
+      "published": true,
+      "result": "180% increase in direct bookings, reduced OTA dependency",
+      "result_label": "Revenue Growth",
+      "brief": "Digital strategy for luxury beach resort to increase direct bookings and reduce reliance on Online Travel Agencies.",
+      "challenge": "Over 70% of bookings coming through expensive OTAs. Poor local SEO meant missing 'hotels in Mombasa' searches. Website did not reflect luxury positioning.",
+      "solution": "Redesigned brand identity and website with luxury aesthetic, implemented local SEO strategy, created content marketing funnel, and built direct booking incentives.",
+      "stack": ["Next.js", "Framer Motion", "SEO", "Analytics", "Node.js"],
+      "metrics": [
+        {"value": "180%", "label": "Direct Bookings"},
+        {"value": "45%", "label": "Reduced OTA Fees"},
+        {"value": "4.8★", "label": "Guest Rating"}
+      ]
+    },
+    {
+      "name": "Coast General Hospital Digital Presence",
+      "slug": "coast-general-hospital",
+      "client": "Coast General Hospital",
+      "industry": "Healthcare",
+      "year": 2023,
+      "published": true,
+      "result": "250% increase in appointment bookings via website",
+      "result_label": "Patient Acquisition",
+      "brief": "Patient-centered digital platform for leading Mombasa hospital with online appointment system and health resources.",
+      "challenge": "Patients struggling to find department information. Phone lines overwhelmed with appointment requests. No online presence for specialized services.",
+      "solution": "Built accessible website with online appointment booking, department directories, doctor profiles, and health resources. Implemented WCAG accessibility standards.",
+      "stack": ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS"],
+      "metrics": [
+        {"value": "250%", "label": "Online Bookings"},
+        {"value": "60%", "label": "Reduced Calls"},
+        {"value": "15k", "label": "Monthly Visitors"}
+      ]
+    }
+  ],
+  "research_articles": [
+    {
+      "name": "The Golden Ratio in Modern Web Design",
+      "slug": "golden-ratio-web-design",
+      "category": "Strategy",
+      "excerpt": "How mathematical principles like the golden ratio (1.618) create naturally pleasing visual hierarchies that guide user attention.",
+      "read_time": "8 min read",
+      "published": true,
+      "featured": true,
+      "content": [
+        {"type": "lead", "text": "The golden ratio appears everywhere in nature—from nautilus shells to spiral galaxies. In web design, this same 1.618 proportion creates layouts that feel inherently balanced and guide users through content naturally."},
+        {"type": "heading", "text": "What is the Golden Ratio?"},
+        {"type": "paragraph", "text": "The golden ratio, represented by the Greek letter phi (φ), is approximately 1.618. When a line is divided into two parts such that the whole length divided by the long part is equal to the long part divided by the short part, you have the golden ratio."},
+        {"type": "stat", "value": "1.618", "label": "The Golden Number"},
+        {"type": "heading", "text": "Application in Web Design"},
+        {"type": "paragraph", "text": "Modern applications include using golden rectangles for hero sections, fibonacci sequences for spacing systems, and spiral layouts for storytelling. The result is interfaces that feel organic and intuitive."}
+      ]
+    },
+    {
+      "name": "Technical SEO for East African Markets",
+      "slug": "technical-seo-east-africa",
+      "category": "Technical",
+      "excerpt": "Site speed, Core Web Vitals, and technical infrastructure considerations for businesses targeting Kenya, Tanzania, and Uganda.",
+      "read_time": "12 min read",
+      "published": true,
+      "featured": false,
+      "content": [
+        {"type": "lead", "text": "While content is king, technical SEO is the foundation. For East African businesses, specific considerations around hosting, CDN selection, and mobile optimization are critical for search visibility."},
+        {"type": "heading", "text": "The Mobile-First Reality"},
+        {"type": "paragraph", "text": "In Kenya and Tanzania, over 85% of web traffic comes from mobile devices. Technical SEO strategies must prioritize mobile performance above all else. This means compressed images, minimal JavaScript, and fast server response times."},
+        {"type": "stat", "value": "85%", "label": "Mobile Traffic in EA"}
+      ]
+    },
+    {
+      "name": "2024 Digital Marketing Trends for African Businesses",
+      "slug": "digital-marketing-trends-2024",
+      "category": "Trends",
+      "excerpt": "WhatsApp Business API, mobile money integration, and AI-powered personalization are reshaping how African businesses connect with customers.",
+      "read_time": "6 min read",
+      "published": true,
+      "featured": false,
+      "content": [
+        {"type": "lead", "text": "The African digital landscape is evolving rapidly. Businesses that adapt to new channels and payment methods are capturing market share from slower competitors."},
+        {"type": "heading", "text": "Conversational Commerce"},
+        {"type": "paragraph", "text": "WhatsApp Business API is becoming the primary customer service and sales channel for African SMEs. Integration with e-commerce platforms allows customers to browse, ask questions, and pay—all within WhatsApp."}
+      ]
+    }
+  ],
+  "partners": [
+    {
+      "name": "Vercel",
+      "short_name": "",
+      "category": "Technology",
+      "published": true,
+      "order": 1,
+      "description": "Cloud platform for static sites and serverless functions. Powers the fastest frontend experiences.",
+      "collaboration": "Deploy and host all client Next.js applications with automatic previews and edge distribution.",
+      "highlight": "99.99% uptime SLA with global edge network",
+      "highlight_value": "99.99%",
+      "highlight_label": "Uptime SLA"
+    },
+    {
+      "name": "Stripe",
+      "short_name": "",
+      "category": "Technology",
+      "published": true,
+      "order": 2,
+      "description": "Payment infrastructure for the internet. Supports M-Pesa, cards, and mobile money across Africa.",
+      "collaboration": "Process payments for e-commerce clients with local payment method support including M-Pesa.",
+      "highlight": "Supporting payments in 40+ African countries",
+      "highlight_value": "40+",
+      "highlight_label": "Countries"
+    },
+    {
+      "name": "Supabase",
+      "short_name": "",
+      "category": "Technology",
+      "published": true,
+      "order": 3,
+      "description": "Open source Firebase alternative. PostgreSQL database with real-time subscriptions.",
+      "collaboration": "Backend infrastructure for client applications with auth, storage, and database.",
+      "highlight": "Sub-100ms query response times globally",
+      "highlight_value": "<100ms",
+      "highlight_label": "Query Time"
+    },
+    {
+      "name": "Content Creators Kenya",
+      "short_name": "CCK",
+      "category": "Creative",
+      "published": true,
+      "order": 4,
+      "description": "Network of photographers, videographers, and content creators across East Africa.",
+      "collaboration": "Source local visual content and production for client brand assets.",
+      "highlight": "500+ creators in 5 countries",
+      "highlight_value": "500+",
+      "highlight_label": "Creators"
+    },
+    {
+      "name": "The Standard Group",
+      "short_name": "Standard",
+      "category": "Media",
+      "published": true,
+      "order": 5,
+      "description": "Leading Kenyan media house with digital, print, and broadcast capabilities.",
+      "collaboration": "PR distribution, media buying, and strategic communication for clients.",
+      "highlight": "Reach of 5M+ monthly digital audience",
+      "highlight_value": "5M+",
+      "highlight_label": "Reach"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "case_studies": {
+    "name": "Case Studies",
+    "properties": {
+      "Name": {
+        "type": "title",
+        "config": {}
+      },
+      "Slug": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Client": {
+        "type": "select",
+        "config": {
+          "options": [
+            { "name": "Pwani Oil Products", "color": "blue" },
+            { "name": "Mombasa Continental Resort", "color": "green" },
+            { "name": "Coast General Hospital", "color": "red" },
+            { "name": "DRD Digital", "color": "yellow" }
+          ]
+        }
+      },
+      "Industry": {
+        "type": "select",
+        "config": {
+          "options": [
+            { "name": "Hospitality", "color": "purple" },
+            { "name": "Healthcare", "color": "red" },
+            { "name": "Manufacturing", "color": "blue" },
+            { "name": "Technology", "color": "green" },
+            { "name": "Retail", "color": "orange" },
+            { "name": "Real Estate", "color": "brown" }
+          ]
+        }
+      },
+      "Year": {
+        "type": "number",
+        "config": {
+          "format": "number"
+        }
+      },
+      "Published": {
+        "type": "checkbox",
+        "config": {}
+      },
+      "Result": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Result Label": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Brief": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Challenge": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Solution": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Stack": {
+        "type": "multi_select",
+        "config": {
+          "options": [
+            { "name": "Next.js", "color": "gray" },
+            { "name": "React", "color": "blue" },
+            { "name": "TypeScript", "color": "blue" },
+            { "name": "Tailwind CSS", "color": "cyan" },
+            { "name": "Node.js", "color": "green" },
+            { "name": "PostgreSQL", "color": "blue" },
+            { "name": "Supabase", "color": "green" },
+            { "name": "Stripe", "color": "purple" },
+            { "name": "SEO", "color": "yellow" },
+            { "name": "Analytics", "color": "orange" },
+            { "name": "Framer Motion", "color": "pink" },
+            { "name": "Vercel", "color": "black" }
+          ]
+        }
+      },
+      "Metrics": {
+        "type": "rich_text",
+        "config": {}
+      }
+    }
+  },
+  "research": {
+    "name": "Research Articles",
+    "properties": {
+      "Name": {
+        "type": "title",
+        "config": {}
+      },
+      "Slug": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Category": {
+        "type": "select",
+        "config": {
+          "options": [
+            { "name": "Strategy", "color": "blue" },
+            { "name": "Technical", "color": "purple" },
+            { "name": "Trends", "color": "green" },
+            { "name": "Case Study", "color": "yellow" },
+            { "name": "Tutorial", "color": "orange" }
+          ]
+        }
+      },
+      "Excerpt": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Read Time": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Published": {
+        "type": "checkbox",
+        "config": {}
+      },
+      "Featured": {
+        "type": "checkbox",
+        "config": {}
+      },
+      "Content": {
+        "type": "rich_text",
+        "config": {}
+      }
+    }
+  },
+  "partners": {
+    "name": "Partners",
+    "properties": {
+      "Name": {
+        "type": "title",
+        "config": {}
+      },
+      "Short Name": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Category": {
+        "type": "select",
+        "config": {
+          "options": [
+            { "name": "Technology", "color": "blue" },
+            { "name": "Creative", "color": "purple" },
+            { "name": "Media", "color": "red" },
+            { "name": "Consulting", "color": "green" },
+            { "name": "Hosting", "color": "orange" }
+          ]
+        }
+      },
+      "Published": {
+        "type": "checkbox",
+        "config": {}
+      },
+      "Order": {
+        "type": "number",
+        "config": {
+          "format": "number"
+        }
+      },
+      "Description": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Collaboration": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Highlight": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Highlight Value": {
+        "type": "rich_text",
+        "config": {}
+      },
+      "Highlight Label": {
+        "type": "rich_text",
+        "config": {}
+      }
+    }
+  }
+}

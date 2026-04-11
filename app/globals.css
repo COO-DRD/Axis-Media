@@ -1,0 +1,370 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* DRD Digital — Light Mode with Green Accent */
+  --paper: #FAFAF8;
+  --paper-warm: #F5F4F0;
+  --surface: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --text-primary: #0A0A0A;
+  --text-secondary: rgba(10, 10, 10, 0.65);
+  --text-tertiary: rgba(10, 10, 10, 0.4);
+  
+  /* Green accent - nature-inspired, sophisticated */
+  --accent: #1D6F42;
+  --accent-light: #2A8F56;
+  --accent-glow: rgba(29, 111, 66, 0.12);
+  --accent-soft: rgba(29, 111, 66, 0.08);
+  
+  /* System tokens */
+  --background: #FAFAF8;
+  --foreground: #0A0A0A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0A0A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A0A0A;
+  --primary: #1D6F42;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F4F0;
+  --secondary-foreground: #0A0A0A;
+  --muted: #F5F4F0;
+  --muted-foreground: rgba(10, 10, 10, 0.65);
+  --accent-color: #1D6F42;
+  --accent-foreground: #FFFFFF;
+  --destructive: #dc2626;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(0, 0, 0, 0.06);
+  --input: rgba(0, 0, 0, 0.06);
+  --ring: #1D6F42;
+  --radius: 0px;
+  
+  /* Fibonacci ratios for motion */
+  --fib-1: 1;
+  --fib-2: 1;
+  --fib-3: 2;
+  --fib-5: 5;
+  --fib-8: 8;
+  --fib-13: 13;
+  --fib-21: 21;
+  --fib-34: 34;
+  --fib-55: 55;
+  --fib-89: 89;
+}
+
+@theme inline {
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --color-paper: var(--paper);
+  --color-paper-warm: var(--paper-warm);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-medium: var(--border-medium);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-soft: var(--accent-soft);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+}
+
+@layer base {
+  * {
+    @apply border-border-subtle outline-ring/50;
+    cursor: none;
+  }
+  html[data-scroll-behavior="smooth"] {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-text-primary;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--accent);
+    color: white;
+  }
+  a, button, [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Hide default cursor globally */
+* {
+  cursor: none !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Fibonacci Spiral SVG Pattern */
+.fibonacci-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='233' height='144' viewBox='0 0 233 144' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 89 A89 89 0 0 1 89 0 M89 0 A55 55 0 0 1 144 55 M144 55 A34 34 0 0 1 110 89 M110 89 A21 21 0 0 1 131 110 M131 110 A13 13 0 0 1 118 97' fill='none' stroke='%231D6F42' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 233px 144px;
+}
+
+/* Golden ratio grid */
+.golden-grid {
+  background-image: 
+    linear-gradient(rgba(29, 111, 66, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 111, 66, 0.03) 1px, transparent 1px);
+  background-size: 89px 55px;
+}
+
+/* Fibonacci sequence animations using golden ratio timing */
+@keyframes fib-spiral-in {
+  0% {
+    transform: rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fib-unfold {
+  0% {
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    opacity: 1;
+  }
+}
+
+@keyframes fib-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(var(--fib-21) * 1px)) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fib-slide {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(var(--fib-34) * -1px));
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes spiral-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes golden-pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.6;
+  }
+  61.8% { 
+    transform: scale(1.618); 
+    opacity: 0;
+  }
+}
+
+@keyframes float-fibonacci {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  38.2% { transform: translateY(-13px) rotate(3deg); }
+  61.8% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+@keyframes draw-path {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Animation classes */
+.animate-fib-spiral {
+  animation: fib-spiral-in 1.618s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-fib-unfold {
+  animation: fib-unfold 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-fib-reveal {
+  animation: fib-reveal 0.809s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-fib-slide {
+  animation: fib-slide 0.809s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-spiral-rotate {
+  animation: spiral-rotate 21s linear infinite;
+}
+
+.animate-golden-pulse {
+  animation: golden-pulse 2.618s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+.animate-float-fib {
+  animation: float-fibonacci 5.5s ease-in-out infinite;
+}
+
+.animate-draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-path 2.618s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Fibonacci stagger delays (using Fibonacci numbers in ms * 10) */
+.delay-fib-1 { animation-delay: 10ms; }
+.delay-fib-2 { animation-delay: 20ms; }
+.delay-fib-3 { animation-delay: 30ms; }
+.delay-fib-5 { animation-delay: 50ms; }
+.delay-fib-8 { animation-delay: 80ms; }
+.delay-fib-13 { animation-delay: 130ms; }
+.delay-fib-21 { animation-delay: 210ms; }
+.delay-fib-34 { animation-delay: 340ms; }
+.delay-fib-55 { animation-delay: 550ms; }
+.delay-fib-89 { animation-delay: 890ms; }
+.delay-fib-144 { animation-delay: 1440ms; }
+
+/* Spiral container for elements */
+.spiral-container {
+  position: relative;
+}
+
+.spiral-item {
+  position: absolute;
+  transform-origin: center center;
+}
+
+/* Organic shapes */
+.organic-blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+/* Text reveal effect */
+.text-reveal {
+  background: linear-gradient(90deg, var(--text-primary) 50%, transparent 50%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-reveal 0.809s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes text-reveal {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+
+/* Glow effect */
+.glow-accent {
+  box-shadow: 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow);
+}
+
+/* Line drawing */
+.line-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-path 1.618s ease-out forwards;
+}
+
+/* Parallax layers */
+.parallax-slow { transform: translateZ(-2px) scale(3); }
+.parallax-medium { transform: translateZ(-1px) scale(2); }
+.parallax-fast { transform: translateZ(0); }
+
+/* Grain texture */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Horizontal scroll */
+.horizontal-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+.horizontal-scroll > * {
+  scroll-snap-align: center;
+}
+
+/* Section transitions */
+.section-fade {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 0.809s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.809s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.section-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
