@@ -1,0 +1,20 @@
+# Cloudflare Pages Configuration
+name = "drd-digital"
+compatibility_date = "2024-01-01"
+
+# Build settings
+[build]
+command = "pnpm build"
+output_directory = ".next"
+
+# Node.js compatibility
+compatibility_flags = ["nodejs_compat"]
+
+# Environment variables (these will be set in Cloudflare Dashboard)
+[vars]
+NEXT_PUBLIC_SUPABASE_URL = ""
+NEXT_PUBLIC_SUPABASE_ANON_KEY = ""
+
+# Secrets (set via wrangler secret put or Cloudflare Dashboard)
+# SUPABASE_SERVICE_ROLE_KEY
+# NOTION_TOKEN
