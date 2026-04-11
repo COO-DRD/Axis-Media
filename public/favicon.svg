@@ -1,16 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <!-- DRD monogram with tech gradient -->
-  <text x="50" y="68" 
-        font-family="system-ui, -apple-system, sans-serif" 
-        font-size="48" 
-        font-weight="800" 
-        fill="url(#techGradient)" 
-        text-anchor="middle"
-        letter-spacing="1">DRD</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- DRD Digital Fibonacci Spiral Logo -->
+  <!-- Outer bounding square -->
+  <rect x="3" y="3" width="94" height="94" stroke="#D6EDE4" stroke-width="1.2"/>
+  <!-- Fibonacci grid lines -->
+  <line x1="61" y1="3" x2="61" y2="97" stroke="#D6EDE4" stroke-width="0.7"/>
+  <line x1="3" y1="61" x2="97" y2="61" stroke="#D6EDE4" stroke-width="0.7"/>
+  <!-- Spiral arcs - golden ratio proportions -->
+  <!-- Arc 1: large, radius 58, top-right quadrant -->
+  <path d="M 61 3 A 58 58 0 0 1 97 61" stroke="#2D6A4F" stroke-width="2.5" fill="none"/>
+  <!-- Arc 2: medium, radius 36, bottom-left -->
+  <path d="M 3 61 A 36 36 0 0 0 61 61" stroke="#2D6A4F" stroke-width="2.5" fill="none"/>
+  <!-- Arc 3: radius 22 -->
+  <path d="M 61 39 A 22 22 0 0 1 61 61" stroke="#3D8B6E" stroke-width="2" fill="none"/>
+  <!-- Arc 4: radius 13 -->
+  <path d="M 61 61 A 13 13 0 0 0 74 61" stroke="#52A882" stroke-width="1.5" fill="none"/>
+  <!-- Spiral origin dot -->
+  <circle cx="74" cy="55" r="2.2" fill="#2D6A4F"/>
+  <!-- Corner tick marks -->
+  <line x1="3" y1="3" x2="12" y2="3" stroke="#2D6A4F" stroke-width="1.8"/>
+  <line x1="3" y1="3" x2="3" y2="12" stroke="#2D6A4F" stroke-width="1.8"/>
+  <line x1="97" y1="97" x2="88" y2="97" stroke="#2D6A4F" stroke-width="1.8"/>
+  <line x1="97" y1="97" x2="97" y2="88" stroke="#2D6A4F" stroke-width="1.8"/>
 </svg>
