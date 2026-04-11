@@ -55,14 +55,14 @@ export function FibonacciCursor() {
 
     const handleMouseEnter = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (target.matches('a, button, [role="button"], input, textarea, [data-hover]')) {
+      if (target?.matches?.('a, button, [role="button"], input, textarea, [data-hover]')) {
         setIsHovering(true)
       }
     }
 
     const handleMouseLeave = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (target.matches('a, button, [role="button"], input, textarea, [data-hover]')) {
+      if (target?.matches?.('a, button, [role="button"], input, textarea, [data-hover]')) {
         setIsHovering(false)
       }
     }
