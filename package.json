@@ -1,5 +1,10 @@
 {
-  "name": "my-project",
+  "name": "drd-digital",
+  "description": "DRD Digital - Digital Infrastructure for African Enterprises",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/COO-DRD/drd-digital.git"
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
