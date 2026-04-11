@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* DRD Digital — Light Mode with Green Accent */
+  /* DRD Digital — Tech Blue & Purple Theme */
   --paper: #FAFAF8;
   --paper-warm: #F5F4F0;
   --surface: #FFFFFF;
@@ -15,11 +15,11 @@
   --text-secondary: rgba(10, 10, 10, 0.65);
   --text-tertiary: rgba(10, 10, 10, 0.4);
   
-  /* Green accent - nature-inspired, sophisticated */
-  --accent: #1D6F42;
-  --accent-light: #2A8F56;
-  --accent-glow: rgba(29, 111, 66, 0.12);
-  --accent-soft: rgba(29, 111, 66, 0.08);
+  /* Blue/Purple Tech Accent */
+  --accent: #3B82F6;
+  --accent-light: #8B5CF6;
+  --accent-glow: rgba(59, 130, 246, 0.12);
+  --accent-soft: rgba(139, 92, 246, 0.08);
   
   /* System tokens */
   --background: #FAFAF8;
@@ -28,19 +28,19 @@
   --card-foreground: #0A0A0A;
   --popover: #FFFFFF;
   --popover-foreground: #0A0A0A;
-  --primary: #1D6F42;
+  --primary: #3B82F6;
   --primary-foreground: #FFFFFF;
   --secondary: #F5F4F0;
   --secondary-foreground: #0A0A0A;
   --muted: #F5F4F0;
   --muted-foreground: rgba(10, 10, 10, 0.65);
-  --accent-color: #1D6F42;
+  --accent-color: #3B82F6;
   --accent-foreground: #FFFFFF;
   --destructive: #dc2626;
   --destructive-foreground: #FFFFFF;
   --border: rgba(0, 0, 0, 0.06);
   --input: rgba(0, 0, 0, 0.06);
-  --ring: #1D6F42;
+  --ring: #3B82F6;
   --radius: 0px;
   
   /* Fibonacci ratios for motion */
@@ -140,17 +140,17 @@
   background: var(--accent);
 }
 
-/* Fibonacci Spiral SVG Pattern */
+/* Fibonacci Spiral SVG Pattern - Blue */
 .fibonacci-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='233' height='144' viewBox='0 0 233 144' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 89 A89 89 0 0 1 89 0 M89 0 A55 55 0 0 1 144 55 M144 55 A34 34 0 0 1 110 89 M110 89 A21 21 0 0 1 131 110 M131 110 A13 13 0 0 1 118 97' fill='none' stroke='%231D6F42' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='233' height='144' viewBox='0 0 233 144' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 89 A89 89 0 0 1 89 0 M89 0 A55 55 0 0 1 144 55 M144 55 A34 34 0 0 1 110 89 M110 89 A21 21 0 0 1 131 110 M131 110 A13 13 0 0 1 118 97' fill='none' stroke='%233B82F6' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
   background-size: 233px 144px;
 }
 
-/* Golden ratio grid */
+/* Golden ratio grid - Blue */
 .golden-grid {
   background-image: 
-    linear-gradient(rgba(29, 111, 66, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(29, 111, 66, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
   background-size: 89px 55px;
 }
 

@@ -169,7 +169,7 @@ export function HeroTerminal() {
                         ${line.type === 'comment' ? 'text-text-tertiary' : ''}
                         ${line.type === 'command' ? 'text-signal' : ''}
                         ${line.type === 'output' ? 'text-text-secondary' : ''}
-                        ${line.type === 'success' ? 'text-green-400' : ''}
+                        ${line.type === 'success' ? 'text-blue-400' : ''}
                       `}
                     >
                       {line.text}
