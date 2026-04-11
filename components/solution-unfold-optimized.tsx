@@ -12,8 +12,8 @@ const solutions = [
     description: 'Built with Next.js, globally distributed via Vercel, optimized for both humans and AI discovery. Sub-2s load times, perfect Core Web Vitals, and architecture that scales.',
     features: ['Next.js / React', 'Edge deployment', 'SEO + GEO optimized', 'CMS integration'],
     metric: '340% average traffic increase',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
-    imageAlt: 'Website development workspace with code',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80',
+    imageAlt: 'Nairobi skyline modern glass towers business district',
   },
   {
     id: 'payments',
@@ -23,8 +23,8 @@ const solutions = [
     description: 'M-Pesa Daraja API, card processing, automated invoicing, and real-time reconciliation. Stop chasing payments. Start scaling.',
     features: ['M-Pesa integration', 'Card processing', 'Auto-reconciliation', 'Revenue dashboards'],
     metric: '127M+ KES processed',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80',
-    imageAlt: 'Mobile payment and digital transactions',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80',
+    imageAlt: 'Mobile phone payment technology M-Pesa Kenya',
   },
   {
     id: 'ai',
@@ -34,8 +34,8 @@ const solutions = [
     description: 'Lead capture that thinks. Customer service that scales. Internal tools that learn. We integrate AI where it creates leverage, not gimmicks.',
     features: ['AI lead routing', 'Automated responses', 'Document processing', 'Custom models'],
     metric: '89% automation rate',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80',
-    imageAlt: 'Abstract AI and automation visualization',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80',
+    imageAlt: 'Digital network connections Kenya technology infrastructure',
   },
 ]
 

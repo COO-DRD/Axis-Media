@@ -235,7 +235,7 @@ export function SpiralHero() {
               <div className="relative mb-8 rounded-lg overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
-                  alt="Modern architecture representing digital infrastructure"
+                  alt="Nairobi Kenya modern architecture skyline glass towers business district"
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-paper/60 to-transparent" />
