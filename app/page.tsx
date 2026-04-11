@@ -6,7 +6,7 @@
 import { Suspense, lazy } from 'react'
 
 // Eager load above-fold components
-import { SpiralNav } from '@/components/spiral-nav'
+import { UnconventionalNav } from '@/components/unconventional-nav'
 import { SpiralHero } from '@/components/spiral-hero-optimized'
 import { FibonacciCursorClient } from '@/components/fibonacci-cursor-client'
 import { PartnerLogos } from '@/components/partner-logos'
@@ -38,8 +38,8 @@ export default function Home() {
       {/* Cursor - client only */}
       <FibonacciCursorClient />
       
-      {/* Navigation - always visible */}
-      <SpiralNav />
+      {/* Navigation - unconventional bottom-centered */}
+      <UnconventionalNav />
       
       {/* Hero - above fold, eager load */}
       <SpiralHero />
